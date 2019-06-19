@@ -89,7 +89,6 @@
       <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
       <button type="button" onclick="showBill()" class="btn btn-primary">Buscar</button>
       <br>
-      <br>
       <div class="input-btn">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Novo</button>
         <div class="modal fade" id="myModal" role="dialog">
@@ -242,7 +241,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa").html("A fatura pesquisada é: " + resultado);
+                $("#resultadoPesquisa").html("Contratante do serviço:" + resultado[0] + "<br>Data do Vencimento" + resultado [1] + "<br>Valor do Serviço" + resultado [2] + "<br>Data do Pegamento:" + resultado [3] + "<br>Houve pagamento?" + resultado [4] );
                 AddressToCall = (frmPesquisa.serviceId.value);
             })
         }
