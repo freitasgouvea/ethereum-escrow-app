@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
@@ -90,7 +90,7 @@
       <br>
       <br>
       <div class="input-btn">
-        <button type="button" onclick="showSell()" class="btn btn-primary">Buscar</button>
+        <button type="button" onclick="showBill()" class="btn btn-primary">Buscar</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Novo</button>
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
@@ -230,13 +230,13 @@
             })
         }
 
-        var frmPesquisa = document.formServico;
+        var frmPesquisa = document.formPesquisa;
         function showBill() {
             event.preventDefault();
             $("#resultadoPesquisa").html("");
-            contract.getSell(frmPesquisa.serviceId.value, function (erro, resultado) {
+            contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
                 if (erro) {
-                    console.log("showSell");
+                    console.log("showBill");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar a fatura");
                     frmPesquisa.serviceId.value = "";
