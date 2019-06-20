@@ -219,7 +219,7 @@
         function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
-            contract.registrerService(frmRegistro.service.contractor.value, frmRegistro.service.dueDate.value, frmRegistro.service.billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            contract.registrerService(frmRegistro.contractor.text, frmRegistro.dueDate.value, frmRegistro.billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
@@ -267,7 +267,8 @@
         function drawSells() {
             event.preventDefault();
             $("#drawSells").html("&nbsp;");
-            contract.drawSells(formSaque._value.valueToTransfer, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            valueToDraw = (formSaque._value.valueToTransfer);
+            contract.drawSells(formSaque._value.valueToTransfer, {from: web3.eth.accounts[0], gas: 3000000, value: valueToDraw}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
                     console.error(erro);
