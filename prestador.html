@@ -116,6 +116,7 @@
                               <input type="number" name="billValue" id="billValue" />
                           </div>
                           <div>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               <button onclick="registrerService()" type="button" class="btn btn-primary text-right">Registrar</button>
                           </div>
                       </form>
@@ -126,23 +127,6 @@
               </div>
             </div>
           </div>
-          <script src="connectToSmartContract.js"></script>
-          <script src="abi.js"></script>
-          <script>var frmRegistro = document.formRegistro;
-          function registrerService() {
-              event.preventDefault();
-              $("#statusRegistro").html("&nbsp;");
-              contract.registrerService(frmRegistro.contractor.text, frmRegistro.dueDate.value, frmRegistro.billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
-                  if (erro) {
-                      console.log("registrerService");
-                      console.error(erro);
-                      alert("Houve um erro ao registrar o serviço.");
-                      return
-                  }
-                  waitForTxToBeMined(resultado, "#statusRegistro");
-              })
-          }
-          </script>
         </div>
         <button type="button" onclick="showBalance()" class="btn btn-primary" data-toggle="modal" data-target="#modalConta">Conta</button>
         <div class="modal fade" id="modalConta" role="dialog">
@@ -233,6 +217,21 @@
         
         var valueToDraw = 0;
 
+        var frmRegistro = document.formRegistro;
+        $( "#myModal" ).on('shown.bs.modal', function registrerService() {
+            event.preventDefault();
+            $("#statusRegistro").html("&nbsp;");
+            contract.registrerService(frmRegistro.contractor.text, frmRegistro.dueDate.value, frmRegistro.billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                if (erro) {
+                    console.log("registrerService");
+                    console.error(erro);
+                    alert("Houve um erro ao registrar o serviço.");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusRegistro");
+            })
+        });
+        
         var frmPesquisa = document.formPesquisa;
         function showBill() {
             event.preventDefault();
