@@ -127,7 +127,7 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConta">Conta</button>
+        <button type="button" onclick="showBalance()" class="btn btn-primary" data-toggle="modal" data-target="#modalConta">Conta</button>
         <div class="modal fade" id="modalConta" role="dialog">
             <div class="modal-dialog">
               <!-- Modal content-->
@@ -259,7 +259,7 @@
                     frmPesquisa.value = "";
                     return
                 }
-                $("#showBalance").html("O balanço da conta é: ETH " + (resultado/1000000000000000000));
+                $("#showBalance").html("O balanço da conta é: ETH " + (resultado [0]/1000000000000000000)) + "<br>O balanço disponível para saque é: ETH " + (resultado [1]/1000000000000000000);
             })
         }
         
