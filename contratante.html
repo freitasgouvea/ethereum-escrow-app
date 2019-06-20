@@ -87,8 +87,18 @@
           <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
           <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
           <br>
+          <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
+          <button type="button" onclick="acceptADelivery()" class="btn btn-primary">Aceitar</button>
+          <button type="button" onclick="contestAService()" class="btn btn-primary">Recusar</button>
         </div>
       </form>
+      <form action="#" method="POST" name="formAcao" id="formAcao">
+          <div class="input">
+            <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
+            <button type="button" onclick="acceptADelivery()" class="btn btn-primary">Aceitar</button>
+            <button type="button" onclick="contestAService()" class="btn btn-primary">Recusar</button>
+          </div>
+        </form>
     </div>
 
     <!-- Divs Infos -->
@@ -113,41 +123,12 @@
         </div>
       </div>
     </div>
-    
-    <!-- Divs Funções-->
-    <div class="container-fluid bg-2">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>Pagar Serviço</h3>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          <div class="input-btn">
-            <button type="button" class="btn btn-primary">Pagar</button>
-          </div>
-          <br>
-        </div>
-        <div class="col-sm-4">
-          <h3>Aceitar Serviço</h3>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          <div class="input-btn">
-            <button type="button" class="btn btn-primary">Aceitar</button>
-          </div>
-          <br>
-        </div>
-        <div class="col-sm-4">
-          <h3>Rejeitar Serviço</h3>        
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          <div class="input-btn">
-            <button type="button" class="btn btn-primary">Rejeitar</button>
-          </div>
-          <br>
-        </div>
-      </div>
-    </div>
 
     <script src="connectToSmartContract.js"></script>
     <script src="abi.js"></script>
     <script>
 
+      var AddressToCall = 0;
       var frmPesquisa = document.formPesquisa;
 
       function showBill() {
@@ -180,7 +161,21 @@
         $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
         AddressToCall = (frmPesquisa.serviceId.value);
         })
-    }
+      }
+
+      function payService() {
+            event.preventDefault();
+            $("#statusTransacao").html("&nbsp;");
+            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                if (erro) {
+                    console.log("payService");
+                    console.error(erro);
+                    alert("Houve um erro ao pagar este serviço");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusTransacao");
+            })
+      }
     </script>
     <footer class="container-fluid bg-4 text-center">
       <p>Pagina de Flavio de Freitas Gouvea Neto</p>
