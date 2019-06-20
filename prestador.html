@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
   <title>Prestador</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,13 +67,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">AgreeZ</a>
+      <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Contratante</a></li>
-        <li><a href="#">Prestador</a></li>
-        <li><a href="#">Arbitro</a></li>
+        <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
+        <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
+        <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
       </ul>
     </div>
   </div>
@@ -85,9 +84,9 @@
   <h1>Prestador</h1> 
   <p>Encontre um SERVIÇO</p> 
   <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-    <div class="input">
-      <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
-      <button type="button" onclick="showBill()" class="btn btn-primary">Buscar</button>
+      <div class="input">
+        <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
+        <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
       <br>
       <br>
       <div class="input-btn">
@@ -172,12 +171,13 @@
     <div>
       <h3>Fatura do Serviço</h3>
       <br>
-      <div id="resultadoPesquisa" class="text-left"></div>
+      <div id="resultadoPesquisa1" class="text-left"></div>
       <br>
     </div>
     <div>
       <h3>Status do Serviço</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <br>
+      <div id="resultadoPesquisa1" class="text-left"></div>
       <br>
     </div>
     <div>
@@ -233,20 +233,37 @@
         }
 
         var frmPesquisa = document.formPesquisa;
+        
         function showBill() {
-            event.preventDefault();
-            $("#resultadoPesquisa").html("");
-            contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
-                if (erro) {
-                    console.log("showBill");
-                    console.error(erro);
-                    alert("Houve um erro ao pesquisar a fatura");
-                    frmPesquisa.serviceId.value = "";
-                    return
-                }
-                $("#resultadoPesquisa").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pegamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
-                AddressToCall = (frmPesquisa.serviceId.value);
-            })
+        event.preventDefault();
+        $("#resultadoPesquisa").html("");
+        contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
+          if (erro) {
+          console.log("showBill");
+          console.error(erro);
+          alert("Houve um erro ao pesquisar a fatura");
+          frmPesquisa.serviceId.value = "";
+          return
+          }
+        $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+        AddressToCall = (frmPesquisa.serviceId.value);
+        })
+        }
+      
+        function showServiceStatus() {
+        event.preventDefault();
+        $("#resultadoPesquisa").html("");
+        contract.showServiceStatus(frmPesquisa.serviceId.value, function (erro, resultado) {
+          if (erro) {
+          console.log("showServiceStatus");
+          console.error(erro);
+          alert("Houve um erro ao pesquisar o serviço");
+          frmPesquisa.serviceId.value = "";
+          return
+          }
+        $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
+        AddressToCall = (frmPesquisa.serviceId.value);
+        })
         }
 
         var frmBalance = document.formBalance;
