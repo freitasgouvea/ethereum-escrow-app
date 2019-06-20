@@ -126,7 +126,7 @@
     <script src="abi.js"></script>
     <script>
 
-      var AddressToCall = 0;
+      var valueToPay = 0;
       var frmPesquisa = document.formPesquisa;
 
       function showBill() {
@@ -141,7 +141,7 @@
           return
           }
         $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
-        AddressToCall = (frmPesquisa.serviceId.value);
+        valueToPay = (resultado[1]*1);
         })
       }
       
@@ -157,14 +157,13 @@
           return
           }
         $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
-        AddressToCall = (frmPesquisa.serviceId.value);
         })
       }
 
       function payService() {
             event.preventDefault();
             $("#statusTransacao").html("&nbsp;");
-            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: AddressToCall}, function (erro, resultado) {
+            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToPay}, function (erro, resultado) {
                 if (erro) {
                     console.log("payService");
                     console.error(erro);
