@@ -218,7 +218,7 @@
         var valueToDraw = 0;
 
         var frmRegistro = document.formRegistro;
-        $( "#myModal" ).on('shown.bs.modal', function registrerService() {
+        function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
             contract.registrerService(frmRegistro.contractor.text, frmRegistro.dueDate.value, frmRegistro.billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
@@ -230,8 +230,8 @@
                 }
                 waitForTxToBeMined(resultado, "#statusRegistro");
             })
-        });
-        
+        }
+
         var frmPesquisa = document.formPesquisa;
         function showBill() {
             event.preventDefault();
