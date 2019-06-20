@@ -85,7 +85,7 @@
       <form action="#" method="get" name="formPesquisa" id="formPesquisa">
         <div class="input">
           <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
-          <button type="button" onclick="showBill()" onclick= "showServiceStatus()" class="btn btn-primary">Buscar</button>
+          <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
           <br>
         </div>
       </form>
@@ -147,7 +147,7 @@
     <script src="connectToSmartContract.js"></script>
     <script src="abi.js"></script>
     <script>
-      
+
       var frmPesquisa = document.formPesquisa;
 
       function showBill() {
@@ -161,7 +161,7 @@
           frmPesquisa.serviceId.value = "";
           return
           }
-        $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pegamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+        $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
         AddressToCall = (frmPesquisa.serviceId.value);
         })
       }
