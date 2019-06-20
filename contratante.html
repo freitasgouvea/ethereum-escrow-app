@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contratante</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color: #004297; /* Blue */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #dddddd; /* Dark Blue */
+    color: #000000;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #000000;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .jumbotron {
+    background-color: #009744;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar-nav  li a:hover {
+    color: #004297 !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">AgreeZ</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Contratante</a></li>
+        <li><a href="#">Prestador</a></li>
+        <li><a href="#">Arbitro</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Busca -->
+<div class="jumbotron text-center bg-1">
+  <h1>Contratante</h1> 
+  <p>Encontre o seu SERVIÇO</p> 
+  <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+      <div class="input">
+        <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
+        <button type="button" onclick="showBill()" class="btn btn-primary">Buscar</button>
+        <br>
+      <br>
+      <div class="input-btn">
+        <button type="button" class="btn btn-primary">Buscar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Divs Infos -->
+<div class="container text-center bg-3">
+  <div class="row">
+    <div>
+      <h3>Fatura do Serviço</h3>
+      <br>
+      <div id="resultadoPesquisa" class="text-left"></div>
+      <br>
+    </div>
+    <div>
+      <h3>Status do Serviço</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <br>
+    </div>
+    <div>
+      <h3>Detalhes do Serviço</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <br>
+    </div>
+  </div>
+</div>
+<!-- Divs Funções-->
+<div class="container-fluid bg-2">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Pagar Serviço</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="input-btn">
+        <button type="button" class="btn btn-primary">Pagar</button>
+      </div>
+      <br>
+    </div>
+    <div class="col-sm-4">
+      <h3>Aceitar Serviço</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="input-btn">
+        <button type="button" class="btn btn-primary">Aceitar</button>
+      </div>
+      <br>
+    </div>
+    <div class="col-sm-4">
+      <h3>Rejeitar Serviço</h3>        
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="input-btn">
+        <button type="button" class="btn btn-primary">Rejeitar</button>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+<script src="connectToSmartContract.js"></script>
+<script src="abi.js"></script>
+<script>
+  var frmPesquisa = document.formPesquisa;
+  function showBill() {
+    event.preventDefault();
+    $("#resultadoPesquisa").html("");
+    contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
+      if (erro) {
+      console.log("showBill");
+      console.error(erro);
+      alert("Houve um erro ao pesquisar a fatura");
+      frmPesquisa.serviceId.value = "";
+      return
+      }
+      $("#resultadoPesquisa").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pegamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+      AddressToCall = (frmPesquisa.serviceId.value);
+      })
+    }
+</script>
+
+
+<footer class="container-fluid bg-4 text-center">
+  <p>Pagina de Flavio de Freitas Gouvea Neto</p>
+  <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p> 
+</footer>
+
+</body>
+</html>
