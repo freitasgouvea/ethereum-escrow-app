@@ -85,7 +85,7 @@
       <form action="#" method="get" name="formPesquisa" id="formPesquisa">
         <div class="input">
           <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
-          <button type="button" onclick="showBill()" class="btn btn-primary">Buscar</button>
+          <button type="button" onclick="showBill()" onclick= "showServiceStatus()" class="btn btn-primary">Buscar</button>
           <br>
         </div>
       </form>
@@ -97,12 +97,13 @@
         <div>
           <h3>Fatura do Serviço</h3>
           <br>
-          <div id="resultadoPesquisa" class="text-left"></div>
+          <div id="resultadoPesquisa1" class="text-left"></div>
           <br>
         </div>
         <div>
           <h3>Status do Serviço</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          <br>
+          <div id="resultadoPesquisa2" class="text-left"></div>
           <br>
         </div>
         <div>
@@ -158,7 +159,22 @@
           frmPesquisa.serviceId.value = "";
           return
           }
-        $("#resultadoPesquisa").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pegamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+        $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pegamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+        AddressToCall = (frmPesquisa.serviceId.value);
+        })
+      
+      function showServiceStatus() {
+        event.preventDefault();
+        $("#resultadoPesquisa").html("");
+        contract.showServiceStatus(frmPesquisa.serviceId.value, function (erro, resultado) {
+          if (erro) {
+          console.log("showServiceStatus");
+          console.error(erro);
+          alert("Houve um erro ao pesquisar o serviço");
+          frmPesquisa.serviceId.value = "";
+          return
+          }
+        $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
         AddressToCall = (frmPesquisa.serviceId.value);
         })
     }
