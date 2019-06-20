@@ -105,15 +105,15 @@
                       <form action="#" method="POST" name="formRegistro" id="formRegistro">
                           <div>
                               <label for="contractor">Endereço do contratante: </label>
-                              <input type="text" name="contractor" id="contractor" size="20" />
+                              <input type="text" name="_contractor" id="_contractor" size="20" />
                           </div>
                           <div>
                               <label for="dueDate">Data do pagamento: </label>
-                              <input type="number" name="dueDate" id="dueDate" />
+                              <input type="number" name="_dueDate" id="_dueDate" />
                           </div>
                           <div>
                               <label for="billValue">Valor do serviço: ETH </label>
-                              <input type="number" name="billValue" id="billValue" />
+                              <input type="number" name="_billValue" id="_billValue" />
                           </div>
                           <div>
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -221,7 +221,7 @@
         function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
-            contract.registrerService(frmRegistro._contractor.text, frmRegistro._dueDate.value, frmRegistro._billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            contract.registrerService(frmRegistro._contractor.value, frmRegistro._dueDate.value, frmRegistro._billValue.value*1000000000000000000, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
