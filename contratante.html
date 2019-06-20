@@ -164,7 +164,7 @@
       function payService() {
             event.preventDefault();
             $("#statusTransacao").html("&nbsp;");
-            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: AddressToCall}, function (erro, resultado) {
                 if (erro) {
                     console.log("payService");
                     console.error(erro);
