@@ -120,12 +120,12 @@
             function showDispute() {
                 event.preventDefault();
                 $("#resultadoPesquisa").html("");
-                contract.showDispute(frmPesquisa.disputeId.value, function (erro, resultado) {
+                contract.showDispute(formPesquisa.disputeId.value, function (erro, resultado) {
                     if (erro) {
                     console.log("showDispute");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar a fatura");
-                    frmPesquisa.disputeId.value = "";
+                    formPesquisa.disputeId.value = "";
                     return
                 }
                 $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado [1] + "<br>Contratante: " + resultado [2]/ + "<br>Valor da disputa: ETH " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Houve julgamento? : " + resultado [5] + "<br>Resultado da disputa : " + resultado [6]);
@@ -135,7 +135,7 @@
             function disputeToContractor() {
                 event.preventDefault();
                 $("#statusAceitacao").html("&nbsp;");
-                contract.disputeToContractor(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.disputeToContractor(formPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("disputeToContractor");
                         console.error(erro);
@@ -149,7 +149,7 @@
             function disputeToProvider() {
                 event.preventDefault();
                 $("#statusRejeicao").html("&nbsp;");
-                contract.disputeToProvider(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.disputeToProvider(formPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("disputeToProvider");
                         console.error(erro);
