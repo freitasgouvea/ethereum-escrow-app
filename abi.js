@@ -8,10 +8,10 @@ const contractABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "deliverService",
+		"name": "deliveryAService",
 		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -32,38 +32,6 @@ const contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "disputeId",
-				"type": "uint256"
-			},
-			{
-				"name": "result",
-				"type": "bool"
-			}
-		],
-		"name": "resolveDispute",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "cashOut",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
 				"name": "_contractor",
 				"type": "address"
 			},
@@ -72,7 +40,7 @@ const contractABI = [
 				"type": "uint256"
 			},
 			{
-				"name": "_valueOfBill",
+				"name": "_billValue",
 				"type": "uint256"
 			}
 		],
@@ -83,14 +51,24 @@ const contractABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "disputeId",
+				"type": "uint256"
+			}
+		],
+		"name": "disputeToProvider",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "showBalance",
 		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
 			{
 				"name": "",
 				"type": "uint256"
@@ -129,10 +107,28 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "disputeId",
+				"type": "uint256"
+			}
+		],
+		"name": "disputeToContractor",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -206,10 +202,28 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "drawSells",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -225,10 +239,6 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "address"
 			},
 			{
 				"name": "",
@@ -269,9 +279,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0x1bece259f438c8ae7b9b5270093de1d1000e634f"; 
+    contractAddress = "0x66e4cE4df46A500fDEC5587CF79925d644bFf137"; 
 } else {
-    contractAddress = "0x1bece259f438c8ae7b9b5270093de1d1000e634f"; 
+    contractAddress = "0x66e4cE4df46A500fDEC5587CF79925d644bFf137"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
