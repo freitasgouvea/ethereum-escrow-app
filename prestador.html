@@ -147,7 +147,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi pago? " + resultado [4]) + "<br>Foi Cancelado? : " + resultado [5];
+                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Foi Cancelado? : " + resultado [5]);
                 valueToPay = (resultado[1]*1);
                 })
             }
@@ -163,7 +163,7 @@
                 frmPesquisa.serviceId.value = "";
                 return
                 }
-                $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + + "<br>Cancelado: " + resultado [1] + "<br>Entrega: " + resultado [2] + "<br>Disputa: " + resultado [3] + "<br>Arbitragem: " + resultado [4] + "<br>Encerrado: " + resultado [5]);
+                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado [1] + "<br>Entregue: " + resultado [2] + "<br>Disputa: " + resultado [3] + "<br>Arbitragem: " + resultado [4] + "<br>Encerrado: " + resultado [5]);
                 })
             }
             
