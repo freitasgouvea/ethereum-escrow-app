@@ -1,182 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Contratante</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <style>
-      body {
-        font: 20px Montserrat, sans-serif;
-        line-height: 1.8;
-        color: #f5f6f7;
-      }
-      p {font-size: 16px;}
-      .margin {margin-bottom: 45px;}
-      .bg-1 { 
-        background-color: #004297; /* Blue */
-        color: #ffffff;
-      }
-      .bg-2 { 
-        background-color: #dddddd; /* Dark Blue */
-        color: #000000;
-      }
-      .bg-3 { 
-        background-color: #ffffff; /* White */
-        color: #000000;
-      }
-      .bg-4 { 
-        background-color: #2f2f2f; /* Black Gray */
-        color: #fff;
-      }
-      .container-fluid {
-        padding-top: 70px;
-        padding-bottom: 70px;
-      }
-      .navbar {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border: 0;
-        border-radius: 0;
-        margin-bottom: 0;
-        font-size: 12px;
-        letter-spacing: 5px;
-      }
-      .jumbotron {
-        background-color: #009744;
-        color: #fff;
-        padding: 100px 25px;
-        font-family: Montserrat, sans-serif;
-      }
-      .navbar-nav  li a:hover {
-        color: #004297 !important;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
-            <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
-            <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <head>
+        <title>Contratante</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style>
+            body {
+                font: 20px Montserrat, sans-serif;
+                line-height: 1.8;
+                color: #f5f6f7;
+            }
+            p {font-size: 16px;}
+            .margin {margin-bottom: 45px;}
+            .bg-1 { 
+                background-color: #004297; /* Blue */
+                color: #ffffff;
+            }
+            .bg-2 { 
+                background-color: #dddddd; /* Dark Blue */
+                color: #000000;
+            }
+            .bg-3 { 
+                background-color: #ffffff; /* White */
+                color: #000000;
+            }
+            .bg-4 { 
+                background-color: #2f2f2f; /* Black Gray */
+                color: #fff;
+            }
+            .container-fluid {
+                padding-top: 70px;
+                padding-bottom: 70px;
+            }
+            .navbar {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                border: 0;
+                border-radius: 0;
+                margin-bottom: 0;
+                font-size: 12px;
+                letter-spacing: 5px;
+            }
+            .jumbotron {
+                background-color: #009744;
+                color: #fff;
+                padding: 100px 25px;
+                font-family: Montserrat, sans-serif;
+            }
+            .navbar-nav  li a:hover {
+                color: #004297 !important;
+            }
+        </style>
+        <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+    </head>
 
-    <!-- Busca -->
-    <div class="jumbotron text-center bg-1">
-      <h1>Contratante</h1> 
-      <p>Encontre o seu SERVIÇO</p> 
-      <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-        <div class="input">
-          <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required>
-          <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
+    <body>
+        <!-- MENU -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Busca -->
+        <div class="jumbotron text-center bg-1">
+            <h1>Contratante</h1> 
+            <p>Encontre o seu SERVIÇO</p> 
+            <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+                <div class="input">
+                    <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required="">
+                    <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
         </div>
-      </form>
-      <br>
-      <br>
-      <form action="#" method="POST" name="formAcao" id="formAcao">
-          <div class="input">
-            <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
-            <button type="button" onclick="acceptADelivery()" class="btn btn-primary">Aceitar</button>
-            <button type="button" onclick="contestAService()" class="btn btn-primary">Recusar</button>
-          </div>
-        </form>
-    </div>
-
-    <!-- Divs Infos -->
-    <div class="container text-center bg-3">
-      <div class="row">
-        <div>
-          <h3>Fatura do Serviço</h3>
-          <br>
-          <div id="resultadoPesquisa1" class="text-left"></div>
-          <br>
+        <!-- Divs Infos -->
+        <div class="container text-center bg-3">
+            <div class="row">
+                <div class="col-6">
+                    <h3>Fatura do Serviço</h3>
+                    <div id="resultadoPesquisa1">
+                    <br>
+                    <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
+                    <br>
+                    <div id="statusTransacao"></div>
+                </div>
+                <br>
+                <div class="col-6">
+                    <h3>Status do Serviço</h3>
+                    <div id="resultadoPesquisa2"></div>
+                    <br>
+                    <button type="button" onclick="acceptService()" class="btn btn-success">Aceitar Serviço</button>
+                    <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button>
+                <br>
+                <div id="statusAceitacao"></div>
+                <div id="satatusRejeicao"></div>
+                </div>
+                <br>
+                <br>
+            </div>
         </div>
-        <div>
-          <h3>Status do Serviço</h3>
-          <br>
-          <div id="resultadoPesquisa2" class="text-left"></div>
-          <br>
-        </div>
-        <div>
-          <h3>Detalhes do Serviço</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <br>
-        </div>
-      </div>
-    </div>
 
-    <script src="connectToSmartContract.js"></script>
-    <script src="abi.js"></script>
-    <script>
+        <script src="connectToSmartContract.js"></script>
+        <script src="abi.js"></script>
+        <script>
 
-      var valueToPay = 0;
-      var frmPesquisa = document.formPesquisa;
+            var valueToPay = 0;
+            var frmPesquisa = document.formPesquisa;
 
-      function showBill() {
-        event.preventDefault();
-        $("#resultadoPesquisa").html("");
-        contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
-          if (erro) {
-          console.log("showBill");
-          console.error(erro);
-          alert("Houve um erro ao pesquisar a fatura");
-          frmPesquisa.serviceId.value = "";
-          return
-          }
-        $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
-        valueToPay = (resultado[1]*1);
-        })
-      }
-      
-      function showServiceStatus() {
-        event.preventDefault();
-        $("#resultadoPesquisa").html("");
-        contract.showServiceStatus(frmPesquisa.serviceId.value, function (erro, resultado) {
-          if (erro) {
-          console.log("showServiceStatus");
-          console.error(erro);
-          alert("Houve um erro ao pesquisar o serviço");
-          frmPesquisa.serviceId.value = "";
-          return
-          }
-        $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
-        })
-      }
-
-      function payService() {
-            event.preventDefault();
-            $("#statusTransacao").html("&nbsp;");
-            contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToPay}, function (erro, resultado) {
-                if (erro) {
-                    console.log("payService");
+            function showBill() {
+                event.preventDefault();
+                $("#resultadoPesquisa").html("");
+                contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
+                    if (erro) {
+                    console.log("showBill");
                     console.error(erro);
-                    alert("Houve um erro ao pagar este serviço");
+                    alert("Houve um erro ao pesquisar a fatura");
+                    frmPesquisa.serviceId.value = "";
                     return
                 }
-                waitForTxToBeMined(resultado, "#statusTransacao");
-            })
-      }
-    </script>
-    <footer class="container-fluid bg-4 text-center">
-      <p>Pagina de Flavio de Freitas Gouvea Neto</p>
-      <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p> 
-    </footer>
-  </body>
+                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi paga? " + resultado [4]);
+                valueToPay = (resultado[1]*1);
+                })
+            }
+      
+            function showServiceStatus() {
+                event.preventDefault();
+                $("#resultadoPesquisa").html("");
+                contract.showServiceStatus(frmPesquisa.serviceId.value, function (erro, resultado) {
+                    if (erro) {
+                    console.log("showServiceStatus");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                frmPesquisa.serviceId.value = "";
+                return
+                }
+                $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
+                })
+            }
+
+            function payService() {
+                event.preventDefault();
+                $("#statusPagamento").html("&nbsp;");
+                contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToPay}, function (erro, resultado) {
+                    if (erro) {
+                        console.log("payService");
+                        console.error(erro);
+                        alert("Houve um erro ao pagar este serviço");
+                        return
+                    }
+                    waitForTxToBeMined(resultado, "#statusPagamento");
+                })
+            }
+
+            function acceptService() {
+                event.preventDefault();
+                $("#statusAceitacao").html("&nbsp;");
+                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                    if (erro) {
+                        console.log("acceptService");
+                        console.error(erro);
+                        alert("Houve um erro ao aceitar o serviço");
+                        return
+                    }
+                    waitForTxToBeMined(resultado, "#statusAceitacao");
+                })
+            }
+
+            function rejectService() {
+                event.preventDefault();
+                $("#statusRejeicao").html("&nbsp;");
+                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                    if (erro) {
+                        console.log("rejectService");
+                        console.error(erro);
+                        alert("Houve um erro ao rejeitar o serviço");
+                        return
+                    }
+                    waitForTxToBeMined(resultado, "#statusRejeicao");
+                })
+            }
+    
+        </script>
+
+        <footer class="container-fluid bg-4 text-center">
+            <p>Pagina de Flavio de Freitas Gouvea Neto</p>
+            <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p> 
+        </footer>
+
+    </body>
+
 </html>
