@@ -90,6 +90,7 @@
                     <button type="button" href="https://freitasgouvea.github.io/asc/novo.html" class="btn btn-primary">Novo Serviço</button>
                 </div>
             </form>
+            <br>
             <div id="saldoDaConta"></div>
             <br>
             <p>Encontre um SERVIÇO</p> 
@@ -144,9 +145,9 @@
                     alert("Houve um erro ao pesquisar a fatura");
                     frmPesquisa.serviceId.value = "";
                     return
-                }
-                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Foi Cancelado? : " + resultado [5]);
-                valueToPay = (resultado[1]*1);
+                    }
+                    $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Foi Cancelado? : " + resultado [5]);
+                    valueToPay = (resultado[1]*1);
                 })
             }
       
@@ -158,10 +159,10 @@
                     console.log("showServiceStatus");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar o serviço");
-                frmPesquisa.serviceId.value = "";
-                return
-                }
-                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado [1] + "<br>Entregue: " + resultado [2] + "<br>Disputa: " + resultado [3] + "<br>Arbitragem: " + resultado [4] + "<br>Encerrado: " + resultado [5]);
+                    frmPesquisa.serviceId.value = "";
+                    return
+                    }
+                    $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado [1] + "<br>Entregue: " + resultado [2] + "<br>Disputa: " + resultado [3] + "<br>Arbitragem: " + resultado [4] + "<br>Encerrado: " + resultado [5]);
                 })
             }
             
@@ -173,9 +174,9 @@
                     console.log("showServiceStatus");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar o serviço");
-                return
-                }
-                $("#saldoDaConta").html("O saldo do Contrato é: ETH " + resultado/1000000000000000000);
+                    return
+                    }
+                    $("#saldoDaConta").html("O saldo do Contrato é: ETH " + resultado/1000000000000000000);
                 })
             }
 
@@ -188,8 +189,8 @@
                         console.error(erro);
                         alert("Houve um erro ao cancelar este serviço");
                         return
-                    }
-                    waitForTxToBeMined(resultado, "#statusCancelamento");
+                        }
+                        waitForTxToBeMined(resultado, "#statusCancelamento");
                 })
             }
 
