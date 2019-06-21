@@ -99,6 +99,7 @@
                     <br>
                     <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
                     <br>
+                    <br>
                     <div id="statusTransacao"></div>
                 </div>
                 <br>
@@ -108,9 +109,10 @@
                     <br>
                     <button type="button" onclick="acceptService()" class="btn btn-success">Aceitar Serviço</button>
                     <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button>
-                <br>
-                <div id="statusAceitacao"></div>
-                <div id="satatusRejeicao"></div>
+                    <br>
+                    <br>
+                    <div id="statusAceitacao"></div><div id="satatusRejeicao"></div>
+                    <br>
                 </div>
                 <br>
                 <br>
@@ -172,7 +174,7 @@
             function acceptService() {
                 event.preventDefault();
                 $("#statusAceitacao").html("&nbsp;");
-                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 900000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("acceptService");
                         console.error(erro);
@@ -186,7 +188,7 @@
             function rejectService() {
                 event.preventDefault();
                 $("#statusRejeicao").html("&nbsp;");
-                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 9000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("rejectService");
                         console.error(erro);
