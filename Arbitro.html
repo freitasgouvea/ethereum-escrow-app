@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Contratante</title>
+        <title>Arbitro</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -46,7 +46,7 @@
                 letter-spacing: 5px;
             }
             .jumbotron {
-                background-color: #009744;
+                background-color: #970000;
                 color: #fff;
                 padding: 100px 25px;
                 font-family: Montserrat, sans-serif;
@@ -81,14 +81,14 @@
         </nav>
         <!-- Busca -->
         <div class="jumbotron text-center bg-1">
-            <h1>Contratante</h1>
+            <h1>Arbitro</h1>
             <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>  
             <br> 
-            <p>Encontre o seu SERVIÇO</p>
+            <p>Encontre uma DISPUTA</p>
             <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                 <div class="input">
                     <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20" placeholder="ID do Serviço" required="">
-                    <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
+                    <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
                 </div>
             </form>
         </div>
@@ -96,21 +96,11 @@
         <div class="container text-center bg-3">
             <div class="row">
                 <div class="col-6">
-                    <h3>Fatura do Serviço</h3>
-                    <div id="resultadoPesquisa1"></div>
+                    <h3>Detalhes da Disputa</h3>
+                    <div id="resultadoPesquisa"></div>
                     <br>
-                    <button type="button" onclick="payService()" class="btn btn-primary">Pagar</button>
-                    <br>
-                    <br>
-                    <div id="statusPagamento"></div>
-                </div>
-                <br>
-                <div class="col-6">
-                    <h3>Status do Serviço</h3>
-                    <div id="resultadoPesquisa2"></div>
-                    <br>
-                    <button type="button" onclick="acceptService()" class="btn btn-success">Aceitar Serviço</button>
-                    <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button>
+                    <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
+                    <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
                     <br>
                     <div id="statusAceitacao"></div>
                     <div id="statusRejeicao"></div>
@@ -125,76 +115,45 @@
         <script src="abi.js"></script>
         <script>
 
-            var valueToPay = 0;
             var frmPesquisa = document.formPesquisa;
 
-            function showBill() {
+            function showDispute() {
                 event.preventDefault();
                 $("#resultadoPesquisa").html("");
-                contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
+                contract.showDispute(frmPesquisa.disputeId.value, function (erro, resultado) {
                     if (erro) {
-                    console.log("showBill");
+                    console.log("showDispute");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar a fatura");
-                    frmPesquisa.serviceId.value = "";
+                    frmPesquisa.disputeId.value = "";
                     return
                 }
-                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado [1] + "<br>Valor do Serviço: ETH " + resultado [2]/1000000000000000000 + "<br>Data do Pagamento: " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Foi Cancelado? : " + resultado [5]);
-                valueToPay = (resultado[2]*1);
-                })
-            }
-      
-            function showServiceStatus() {
-                event.preventDefault();
-                $("#resultadoPesquisa").html("");
-                contract.showServiceStatus(frmPesquisa.serviceId.value, function (erro, resultado) {
-                    if (erro) {
-                    console.log("showServiceStatus");
-                    console.error(erro);
-                    alert("Houve um erro ao pesquisar o serviço");
-                frmPesquisa.serviceId.value = "";
-                return
-                }
-                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado [1] + "<br>Entregue: " + resultado [2] + "<br>Disputa: " + resultado [3] + "<br>Arbitragem: " + resultado [4] + "<br>Encerrado: " + resultado [5]);
+                $("#resultadoPesquisa1").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado [1] + "<br>Contratante: " + resultado [2]/ + "<br>Valor da disputa: ETH " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Houve julgamento? : " + resultado [5] + "<br>Resultado da disputa : " + resultado [6]);
                 })
             }
 
-            function payService() {
-                event.preventDefault();
-                $("#statusPagamento").html("&nbsp;");
-                contract.payService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToPay}, function (erro, resultado) {
-                    if (erro) {
-                        console.log("payService");
-                        console.error(erro);
-                        alert("Houve um erro ao pagar este serviço");
-                        return
-                    }
-                    waitForTxToBeMined(resultado, "#statusPagamento");
-                })
-            }
-
-            function acceptService() {
+            function disputeToContractor() {
                 event.preventDefault();
                 $("#statusAceitacao").html("&nbsp;");
-                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.disputeToContractor(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
-                        console.log("acceptService");
+                        console.log("disputeToContractor");
                         console.error(erro);
-                        alert("Houve um erro ao aceitar o serviço");
+                        alert("Houve um erro ao julgar este caso");
                         return
                     }
                     waitForTxToBeMined(resultado, "#statusAceitacao");
                 })
             }
 
-            function rejectService() {
+            function disputeToProvider() {
                 event.preventDefault();
                 $("#statusRejeicao").html("&nbsp;");
-                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.disputeToProvider(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
-                        console.log("rejectService");
+                        console.log("disputeToProvider");
                         console.error(erro);
-                        alert("Houve um erro ao rejeitar o serviço");
+                        alert("Houve um erro ao julgar este caso");
                         return
                     }
                     waitForTxToBeMined(resultado, "#statusRejeicao");
