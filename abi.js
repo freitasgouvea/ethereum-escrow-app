@@ -8,7 +8,7 @@ const contractABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "deliveryAService",
+		"name": "deliverService",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -18,7 +18,21 @@ const contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "disputeID",
+				"name": "serviceId",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelService",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "disputeId",
 				"type": "uint256"
 			},
 			{
@@ -26,10 +40,24 @@ const contractABI = [
 				"type": "bool"
 			}
 		],
-		"name": "solveADispute",
+		"name": "resolveDispute",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "cashOut",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -115,10 +143,24 @@ const contractABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "contestAService",
+		"name": "rejectService",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "serviceId",
+				"type": "uint256"
+			}
+		],
+		"name": "acceptService",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -171,38 +213,10 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "serviceId",
-				"type": "uint256"
-			}
-		],
-		"name": "acceptADelivery",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "drawSells",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [
 			{
-				"name": "disputeID",
+				"name": "disputeId",
 				"type": "uint256"
 			}
 		],
@@ -211,6 +225,10 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "address"
 			},
 			{
 				"name": "",
@@ -251,9 +269,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0xb89F734fbF9B0A59c1aB3d614C3E30382501e90c"; 
+    contractAddress = "0x1bece259f438c8ae7b9b5270093de1d1000e634f"; 
 } else {
-    contractAddress = "0xb89F734fbF9B0A59c1aB3d614C3E30382501e90c"; 
+    contractAddress = "0x1bece259f438c8ae7b9b5270093de1d1000e634f"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
