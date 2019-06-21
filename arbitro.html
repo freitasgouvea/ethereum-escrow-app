@@ -98,55 +98,49 @@
             </div>
         </div>
     </nav>
-    <!-- Busca -->
+    <!-- Profile -->
     <div class="jumbotron text-center bg-1">
-        <h1>Arbitro</h1>
+            <img src="img_avatar5.png" alt="Avatar" width="100" height="100">
+        <h1>Árbitro</h1>
         <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
         <br>
-        <p>Encontre uma DISPUTA</p>
-        <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-            <div class="input">
-                <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
-                    placeholder="ID da Disputa" required="">
-                <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
+    </div>
+    <!-- Div Busca -->
+    <div class="container text-center bg-3">
+        <div class="row">
+            <div>
+                <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+                    <div class="input">
+                        <h3>Encontre uma DISPUTA
+                            <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
+                                placeholder="ID da Disputa" required="">
+                            <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
+                        </h3>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
     <!-- Divs Infos -->
-    <div class="container text-center bg-3">
+    <div class="container-fluid text-center bg-3">
         <div class="row">
             <div class="col-6">
                 <h3>Detalhes da Disputa</h3>
                 <div id="resultadoPesquisa"></div>
                 <br>
+                <button type="button" data-toggle="modal" data-target="#modalContratos"
+                class="btn btn-primary">Contrato</button>
+            <button type="button" data-toggle="modal" data-target="#modalEventos"
+                class="btn btn-primary">Eventos</button>
                 <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
                 <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
-                <br>
                 <br>
                 <div id="statusAceitacao"></div>
                 <div id="statusRejeicao"></div>
                 <br>
             </div>
-            <br>
-            <br>
         </div>
     </div>
-
-    <!-- Divs Detalhes -->
-    <div class="container-fluid text-center bg-2">
-        <div class="row">
-            <div>
-                <h3>Detalhes do Serviço</h3>
-                <button type="button" data-toggle="modal" data-target="#modalContratos"
-                    class="btn btn-primary">Contrato</button>
-                <button type="button" data-toggle="modal" data-target="#modalEventos"
-                    class="btn btn-primary">Eventos</button>
-                <br>
-                <br>
-            </div>
-        </div>
-    </div>
-
     <!-- Modals Detalhes -->
     <div id="modalEventos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalEventosTitle"
         aria-hidden="true">
@@ -223,7 +217,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content bg-3">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">Contrato</h3>
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Contrato do Serviço</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -100,69 +100,79 @@
     </nav>
     <!-- Busca -->
     <div class="jumbotron text-center bg-1">
+        <img src="img_avatar3.png" alt="Avatar" width="80" height="80">
         <h1>Prestador</h1>
         <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
         <form action="#" method="get" name="formSaldo" id="formSaldo">
             <div class="input">
                 <h5> Contrato: 0x66e4cE4df46A500fDEC5587CF79925d644bFf137</h5>
-                <button type="button" onclick="showBalance()" class="btn btn-primary">Consultar Saldo</button>
-                <button type="button" href="https://freitasgouvea.github.io/asc/novo.html" class="btn btn-primary">Novo
-                    Serviço</button>
+                <button type="button" onclick="showBalance()" class="btn btn-primary">Saldo</button>
+                <button type="button" data-toggle="modal" data-target="#modalNovo" class="btn btn-primary">Smart
+                    Contract</button>
             </div>
         </form>
-        <br>
         <div id="saldoDaConta"></div>
-        <br>
-        <p>Encontre um SERVIÇO</p>
-        <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-            <div class="input">
-                <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
-                    placeholder="ID do Serviço" required="">
-                <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
-            </div>
-        </form>
-        <br>
     </div>
-
+    <!-- Div Busca -->
+    <div class="container text-center bg-3">
+        <div class="row">
+            <div>
+                <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+                    <div class="input">
+                        <h3>Encontre um SERVIÇO
+                            <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
+                                placeholder="ID do Serviço" required="">
+                            <button type="button" onclick="showBill(); showServiceStatus()"
+                                class="btn btn-primary">Buscar</button>
+                            <button type="button" data-toggle="modal" data-target="#modalNovo"
+                                class="btn btn-primary">Novo Serviço</button>
+                        </h3>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Divs Infos -->
     <div class="container-fluid text-center bg-3">
         <div class="row">
-            <div class="col-md-6">
-                <h3>Fatura do Serviço</h3>
-                <div id="resultadoPesquisa1"></div>
-                <br>
-                <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Fatura</button>
-                <br>
-                <br>
-                <div id="statusCancelamento"></div>
-            </div>
-            <div class="col-md-6">
-                <h3>Status do Serviço</h3>
-                <div id="resultadoPesquisa2"></div>
-                <br>
-                <button type="button" onclick="deliveryAService()" class="btn btn-success">Entregar Serviço</button>
-                <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Serviço</button>
-                <br>
-                <br>
-                <div id="statusCancelamento"></div>
-                <div id="statusEntrega"></div>
-            </div>
-            <br>
-            <br>
-        </div>
-    </div>
-
-    <!-- Divs Detalhes -->
-    <div class="container-fluid text-center bg-2">
-        <div class="row">
             <div>
                 <h3>Detalhes do Serviço</h3>
+                <div id="resultadoPesquisa1"></div>
+                <div id="resultadoPesquisa2"></div>
+                <br>
                 <button type="button" data-toggle="modal" data-target="#modalContratos"
                     class="btn btn-primary">Contrato</button>
                 <button type="button" data-toggle="modal" data-target="#modalEventos"
                     class="btn btn-primary">Eventos</button>
+                <button type="button" onclick="deliveryAService()" class="btn btn-success">Entregar Serviço</button>
+                <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Serviço</button>
                 <br>
-                <br>
+                <div id="statusCancelamento"></div>
+                <div id="statusEntrega"></div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Novo-->
+    <div id="modalNovo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalContratosTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content bg-3">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Registrar um novo serviço</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formRegistro"></form>
+                </div>
+                <div>
+                    <form id="escolhaDoContrato"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="registrerService()" class="btn btn-primary">Regsitrar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -272,7 +282,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="Sign()" class="btn btn-primary">Assinar</button>
+                    <button type="button" class="btn btn-primary">Verificar Assinatura</button>
+                    <button type="button" onclick="Sign()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
