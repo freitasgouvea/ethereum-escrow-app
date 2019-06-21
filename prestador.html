@@ -125,14 +125,17 @@
     </div>
 
     <!-- Divs Infos -->
-    <div class="container text-center bg-3">
+    <div class="container-fluid text-center bg-3">
         <div class="row">
             <div class="col-md-6">
                 <h3>Fatura do Serviço</h3>
                 <div id="resultadoPesquisa1"></div>
                 <br>
+                <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Fatura</button>
+                <br>
+                <br>
+                <div id="statusCancelamento"></div>
             </div>
-            <br>
             <div class="col-md-6">
                 <h3>Status do Serviço</h3>
                 <div id="resultadoPesquisa2"></div>
@@ -170,7 +173,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content bg-3">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">Eventos do contrato</h3>
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Eventos do serviço</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -240,7 +243,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content bg-3">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">Contrato</h3>
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Contrato do serviço</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
