@@ -12,7 +12,7 @@
             body {
                 font: 20px Montserrat, sans-serif;
                 line-height: 1.8;
-                color: #f5f6f7;
+                color: #fff;
             }
             p {font-size: 16px;}
             .margin {margin-bottom: 45px;}
@@ -82,12 +82,12 @@
         <!-- Busca -->
         <div class="jumbotron text-center bg-1">
             <h1>Prestador</h1>
-            <p>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</p> 
+            <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5> 
             <form action="#" method="get" name="formSaldo" id="formSaldo">
                 <div class="input">
-                    <p> Contrato: 0x66e4cE4df46A500fDEC5587CF79925d644bFf137 
-                        <button type="button" onclick="showBalance()" class="btn btn-success">Consultar Saldo</button>
-                    </p>
+                    <h5> Contrato: 0x66e4cE4df46A500fDEC5587CF79925d644bFf137</h5> 
+                    <button type="button" onclick="showBalance()" class="btn btn-primary">Consultar Saldo</button>
+                    <button type="button" href="https://freitasgouvea.github.io/asc/novo.html" class="btn btn-primary">Novo Serviço</button>
                 </div>
             </form>
             <div id="saldoDaConta"></div>
@@ -109,10 +109,6 @@
                     <h3>Fatura do Serviço</h3>
                     <div id="resultadoPesquisa1"></div>
                     <br>
-                    <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar</button>
-                    <br>
-                    <br>
-                    <div id="statusCancelamento"></div>
                 </div>
                 <br>
                 <div class="col-6">
@@ -120,8 +116,10 @@
                     <div id="resultadoPesquisa2"></div>
                     <br>
                     <button type="button" onclick="deliverService()" class="btn btn-success">Entregar Serviço</button>
+                    <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Serviço</button>
                     <br>
                     <br>
+                    <div id="statusCancelamento"></div>
                     <div id="statusEntrega"></div>
                 </div>
                 <br>
