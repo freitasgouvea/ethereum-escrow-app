@@ -83,7 +83,7 @@
         <div class="jumbotron text-center bg-1">
             <h1>Prestador</h1>
             <p>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</p> 
-            <form action="#" method="POST" name="formSaldo" id="formSaldo">
+            <form action="#" method="get" name="formSaldo" id="formSaldo">
                 <div class="input">
                     <p> Contrato: 0x66e4cE4df46A500fDEC5587CF79925d644bFf137 
                         <button type="button" onclick="showBalance()" class="btn btn-success">Consultar Saldo</button>
@@ -184,7 +184,7 @@
             function cancelService() {
                 event.preventDefault();
                 $("#statusCancelamento").html("&nbsp;");
-                contract.cancelService({from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.cancelService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("cancelService");
                         console.error(erro);
@@ -198,7 +198,7 @@
             function deliverService() {
                 event.preventDefault();
                 $("#statusEntrega").html("&nbsp;");
-                contract.deliverService({from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.deliverService(frmPesquisa.serviceId.value,{from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("deliverService");
                         console.error(erro);
