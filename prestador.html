@@ -81,7 +81,17 @@
         </nav>
         <!-- Busca -->
         <div class="jumbotron text-center bg-1">
-            <h1>Prestador</h1> 
+            <h1>Prestador</h1>
+            <p>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</p> 
+            <form action="#" method="POST" name="formSaldo" id="formSaldo">
+                <div class="input">
+                    <p> Contrato: 0x1becE259f438C8aE7b9b5270093DE1d1000E634F 
+                        <button type="button" onclick="showBalance()" class="btn btn-success">Consultar Saldo</button>
+                    </p>
+                </div>
+            </form>
+            <div id="saldoDaConta"></div>
+            <br>
             <p>Encontre um SERVIÇO</p> 
             <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                 <div class="input">
@@ -89,6 +99,8 @@
                     <button type="button" onclick="showBill(); showServiceStatus()" class="btn btn-primary">Buscar</button>
                 </div>
             </form>
+            <br>
+
         </div>
         <!-- Divs Infos -->
         <div class="container text-center bg-3">
@@ -154,11 +166,25 @@
                 $("#resultadoPesquisa2").html("Pagamento: " + resultado[0] + "<br>Entrega: " + resultado [1] + "<br>Disputa: " + resultado [2] + "<br>Arbitragem: " + resultado [3] + "<br>Encerrado " + resultado [4]);
                 })
             }
+            
+            function showBalance() {
+                event.preventDefault();
+                $("#saldoDaConta").html("");
+                contract.showBalance(function (erro, resultado) {
+                    if (erro) {
+                    console.log("showServiceStatus");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                return
+                }
+                $("#saldoDaConta").html("O saldo do Contrato é: ETH " + resultado/1000000000000000000);
+                })
+            }
 
             function cancelService() {
                 event.preventDefault();
                 $("#statusCancelamento").html("&nbsp;");
-                contract.cancelService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.cancelService({from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("cancelService");
                         console.error(erro);
@@ -172,7 +198,7 @@
             function deliverService() {
                 event.preventDefault();
                 $("#statusEntrega").html("&nbsp;");
-                contract.deliverService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                contract.deliverService({from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("deliverService");
                         console.error(erro);
