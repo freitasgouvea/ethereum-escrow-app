@@ -174,7 +174,7 @@
             function acceptService() {
                 event.preventDefault();
                 $("#statusAceitacao").html("&nbsp;");
-                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 900000, value: 0}, function (erro, resultado) {
+                contract.acceptService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("acceptService");
                         console.error(erro);
@@ -188,7 +188,7 @@
             function rejectService() {
                 event.preventDefault();
                 $("#statusRejeicao").html("&nbsp;");
-                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 9000000, value: 0}, function (erro, resultado) {
+                contract.rejectService(frmPesquisa.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                     if (erro) {
                         console.log("rejectService");
                         console.error(erro);
