@@ -1,173 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Arbitro</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <style>
-            body {
-                font: 20px Montserrat, sans-serif;
-                line-height: 1.8;
-                color: #f5f6f7;
-            }
-            p {font-size: 16px;}
-            .margin {margin-bottom: 45px;}
-            .bg-1 { 
-                background-color: #004297; /* Blue */
-                color: #ffffff;
-            }
-            .bg-2 { 
-                background-color: #dddddd; /* Dark Blue */
-                color: #000000;
-            }
-            .bg-3 { 
-                background-color: #ffffff; /* White */
-                color: #000000;
-            }
-            .bg-4 { 
-                background-color: #2f2f2f; /* Black Gray */
-                color: #fff;
-            }
-            .container-fluid {
-                padding-top: 70px;
-                padding-bottom: 70px;
-            }
-            .navbar {
-                padding-top: 15px;
-                padding-bottom: 15px;
-                border: 0;
-                border-radius: 0;
-                margin-bottom: 0;
-                font-size: 12px;
-                letter-spacing: 5px;
-            }
-            .jumbotron {
-                background-color: #970000;
-                color: #fff;
-                padding: 100px 25px;
-                font-family: Montserrat, sans-serif;
-            }
-            .navbar-nav  li a:hover {
-                color: #004297 !important;
-            }
-        </style>
-        <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
-    </head>
 
-    <body>
-        <!-- MENU -->
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
+<head>
+    <title>Arbitro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font: 20px Montserrat, sans-serif;
+            line-height: 1.8;
+            color: #f5f6f7;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .margin {
+            margin-bottom: 45px;
+        }
+
+        .bg-1 {
+            background-color: #004297;
+            /* Blue */
+            color: #ffffff;
+        }
+
+        .bg-2 {
+            background-color: #dddddd;
+            /* Dark Blue */
+            color: #000000;
+        }
+
+        .bg-3 {
+            background-color: #ffffff;
+            /* White */
+            color: #000000;
+        }
+
+        .bg-4 {
+            background-color: #2f2f2f;
+            /* Black Gray */
+            color: #fff;
+        }
+
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .navbar {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+
+        .jumbotron {
+            background-color: #970000;
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .navbar-nav li a:hover {
+            color: #004297 !important;
+        }
+    </style>
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body>
+    <!-- MENU -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
                     <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
                     <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
                 </ul>
-                </div>
             </div>
-        </nav>
-        <!-- Busca -->
-        <div class="jumbotron text-center bg-1">
-            <h1>Arbitro</h1>
-            <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>  
-            <br> 
-            <p>Encontre uma DISPUTA</p>
-            <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-                <div class="input">
-                    <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20" placeholder="ID da Disputa" required="">
-                    <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
-                </div>
-            </form>
         </div>
-        <!-- Divs Infos -->
-        <div class="container text-center bg-3">
-            <div class="row">
-                <div class="col-6">
-                    <h3>Detalhes da Disputa</h3>
-                    <div id="resultadoPesquisa"></div>
-                    <br>
-                    <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
-                    <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
-                    <br>
-                    <br>
-                    <div id="statusAceitacao"></div>
-                    <div id="statusRejeicao"></div>
-                    <br>
-                </div>
+    </nav>
+    <!-- Busca -->
+    <div class="jumbotron text-center bg-1">
+        <h1>Arbitro</h1>
+        <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
+        <br>
+        <p>Encontre uma DISPUTA</p>
+        <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+            <div class="input">
+                <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
+                    placeholder="ID da Disputa" required="">
+                <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <!-- Divs Infos -->
+    <div class="container text-center bg-3">
+        <div class="row">
+            <div class="col-6">
+                <h3>Detalhes da Disputa</h3>
+                <div id="resultadoPesquisa"></div>
+                <br>
+                <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
+                <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
+                <br>
+                <br>
+                <div id="statusAceitacao"></div>
+                <div id="statusRejeicao"></div>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <!-- Divs Detalhes -->
+    <div class="container-fluid text-center bg-2">
+        <div class="row">
+            <div>
+                <h3>Detalhes do Serviço</h3>
+                <button type="button" data-toggle="modal" data-target="#modalContratos"
+                    class="btn btn-primary">Contrato</button>
+                <button type="button" data-toggle="modal" data-target="#modalEventos"
+                    class="btn btn-primary">Eventos</button>
                 <br>
                 <br>
             </div>
         </div>
+    </div>
 
-        <script src="connectToSmartContract.js"></script>
-        <script src="abi.js"></script>
-        <script>
+    <!-- Modals Detalhes -->
+    <div id="modalEventos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalEventosTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content bg-3">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Eventos do contrato</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="img_avatar5.png" class="media-object" style="width:45px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Árbitro <small><i>Registrado em 27 de junho de
+                                        2019</i></small><small><i> id: #####</i></small></h4>
+                            <p>O árbitro rejeitou a disputa (detalhes)</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="img_avatar2.png" class="media-object" style="width:45px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Contratante <small><i>Registrado em 24 de junho de
+                                        2019</i></small><small><i> id: #####</i></small></h4>
+                            <p>Rejeição do serviço (detalhes)</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="img_avatar3.png" class="media-object" style="width:45px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Prestador <small><i>Registrado em 22 de junho de
+                                        2019</i></small><small><i> id: #####</i></small></h4>
+                            <p>Entrega do Serviço (detalhes)</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="img_avatar2.png" class="media-object" style="width:45px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Contratante <small><i>Registrado em 06 de junho de
+                                        2019</i></small><small><i> id: #####</i></small></h4>
+                            <p>Pagamento pelo Serviço (detalhes)</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="img_avatar3.png" class="media-object" style="width:45px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Prestador <small><i>Registrado em 05 de junho de
+                                        2019</i></small><small><i> id: #####</i></small></h4>
+                            <p>Criação do Contrato (detalhes)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Registrar Evento</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            var frmPesquisa = document.formPesquisa;
+    <div id="modalContratos" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+        aria-labelledby="modalContratosTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content bg-3">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Contrato</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4><strong>Contrato para prestação de serviços de freelancers </strong></h4>
+                    <p id="p1">p1. Este contrato vai ser realizado entre (nome), (estado civil), (profissão), portador
+                        da
+                        cédula de identidade R.G. nº ______, residente no ____________ e que a partir de agora será
+                        denominado como contratado e entre (nome), (estado civil), (profissão), portador da cédula de
+                        identidade R.G. nº ______ e residente no ____________, estando este último a atuar como
+                        representante da empresa ________ e que a partir de agora será denominado como contratante.</p>
+                    <p id="p2">p2. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <p id="p3">p3. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <p id="p4">p4. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <p id="p5">p5. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <p id="local">São Paulo, 27 de junho de 2019.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="Sign()" class="btn btn-primary">Verificar Assinatura</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            function showDispute() {
-                event.preventDefault();
-                $("#resultadoPesquisa").html("");
-                contract.showDispute(frmPesquisa.disputeId.value, function (erro, resultado) {
-                    if (erro) {
+
+    <script src="connectToSmartContract.js"></script>
+    <script src="abi.js"></script>
+    <script>
+
+        var frmPesquisa = document.formPesquisa;
+
+        function showDispute() {
+            event.preventDefault();
+            $("#resultadoPesquisa").html("");
+            contract.showDispute(frmPesquisa.disputeId.value, function (erro, resultado) {
+                if (erro) {
                     console.log("showDispute");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar a fatura");
                     frmPesquisa.disputeId.value = "";
                     return
                 }
-                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado [1] + "<br>Contratante: " + resultado [2] + "<br>Valor da disputa: ETH " + resultado [3] + "<br>Houve julgamento? : " + resultado [4] + "<br>Resultado da disputa : " + resultado [5]);
-                })
-            }
+                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3] + "<br>Houve julgamento? : " + resultado[4] + "<br>Resultado da disputa : " + resultado[5]);
+            })
+        }
 
-            function disputeToContractor() {
-                event.preventDefault();
-                $("#statusAceitacao").html("&nbsp;");
-                contract.disputeToContractor(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
-                    if (erro) {
-                        console.log("disputeToContractor");
-                        console.error(erro);
-                        alert("Houve um erro ao julgar este caso");
-                        return
-                    }
-                    waitForTxToBeMined(resultado, "#statusAceitacao");
-                })
-            }
+        function disputeToContractor() {
+            event.preventDefault();
+            $("#statusAceitacao").html("&nbsp;");
+            contract.disputeToContractor(frmPesquisa.disputeId.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+                if (erro) {
+                    console.log("disputeToContractor");
+                    console.error(erro);
+                    alert("Houve um erro ao julgar este caso");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusAceitacao");
+            })
+        }
 
-            function disputeToProvider() {
-                event.preventDefault();
-                $("#statusRejeicao").html("&nbsp;");
-                contract.disputeToProvider(frmPesquisa.disputeId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
-                    if (erro) {
-                        console.log("disputeToProvider");
-                        console.error(erro);
-                        alert("Houve um erro ao julgar este caso");
-                        return
-                    }
-                    waitForTxToBeMined(resultado, "#statusRejeicao");
-                })
-            }
-    
-        </script>
-    
-    </body>
+        function disputeToProvider() {
+            event.preventDefault();
+            $("#statusRejeicao").html("&nbsp;");
+            contract.disputeToProvider(frmPesquisa.disputeId.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+                if (erro) {
+                    console.log("disputeToProvider");
+                    console.error(erro);
+                    alert("Houve um erro ao julgar este caso");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusRejeicao");
+            })
+        }
 
-    <footer class="container-fluid bg-4 text-center">
-        <p>Pagina de Flavio de Freitas Gouvea Neto</p>
-        <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p> 
-    </footer>
+    </script>
+
+</body>
+
+<footer class="container-fluid bg-4 text-center">
+    <p>Pagina de Flavio de Freitas Gouvea Neto</p>
+    <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p>
+</footer>
 
 </html>
