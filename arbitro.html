@@ -102,6 +102,7 @@
                     <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
                     <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
                     <br>
+                    <br>
                     <div id="statusAceitacao"></div>
                     <div id="statusRejeicao"></div>
                     <br>
@@ -128,7 +129,7 @@
                     frmPesquisa.disputeId.value = "";
                     return
                 }
-                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado [1] + "<br>Contratante: " + resultado [2]/ + "<br>Valor da disputa: ETH " + resultado [3] + "<br>Já foi pago? " + resultado [4] + "<br>Houve julgamento? : " + resultado [5] + "<br>Resultado da disputa : " + resultado [6]);
+                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado [1] + "<br>Contratante: " + resultado [2] + "<br>Valor da disputa: ETH " + resultado [3] + "<br>Houve julgamento? : " + resultado [4] + "<br>Resultado da disputa : " + resultado [5]);
                 })
             }
 
