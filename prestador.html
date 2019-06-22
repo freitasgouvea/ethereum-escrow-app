@@ -63,6 +63,16 @@
             letter-spacing: 5px;
         }
 
+        .navbar2 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
         .jumbotron {
             background-color: #004297;
             color: #fff;
@@ -98,21 +108,22 @@
             </div>
         </div>
     </nav>
-    <!-- Busca -->
-    <div class="jumbotron text-center bg-1">
-        <img src="img_avatar3.png" alt="Avatar" width="120" height="120">
-        <h1>Prestador</h1>
-        <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
-        <form action="#" method="get" name="formSaldo" id="formSaldo">
-            <div class="input">
-                <h5> Contrato: 0x66e4cE4df46A500fDEC5587CF79925d644bFf137</h5>
-                <button type="button" onclick="showBalance()" class="btn btn-primary">Saldo</button>
-                <button type="button" data-toggle="modal" data-target="#modalNovo" class="btn btn-primary">Smart
-                    Contract</button>
+    <!-- MENU PRESTADOR -->
+    <nav class="navbar2 navbar-default bg-1">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="img_avatar3.png" class="media-object" style="width:45px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Prestador</h4>
+                        <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div id="saldoDaConta"></div>
-    </div>
+        </div>
+    </nav>
     <!-- Div Busca -->
     <div class="container text-center bg-3">
         <div class="row">
@@ -140,7 +151,7 @@
                 <div id="resultadoPesquisa1"></div>
                 <div id="resultadoPesquisa2"></div>
                 <br>
-                <button type="button" data-toggle="modal" data-target="#modalContratos"
+                <button type="button" onclick="showContract()" data-toggle="modal" data-target="#modalContratos"
                     class="btn btn-primary">Contrato</button>
                 <button type="button" data-toggle="modal" data-target="#modalEventos"
                     class="btn btn-primary">Eventos</button>
@@ -280,6 +291,9 @@
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
                     <p id="local">São Paulo, 27 de junho de 2019.</p>
                 </div>
+                <br>
+                <div id="showContract"></div>
+                <br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Verificar Assinatura</button>
@@ -328,17 +342,32 @@
             })
         }
 
-        function showBalance() {
+        function showStatus() {
             event.preventDefault();
-            $("#saldoDaConta").html("");
-            contract.showBalance(function (erro, resultado) {
+            $("#showStatus").html("");
+            contract.showStatus(function (erro, resultado) {
                 if (erro) {
-                    console.log("showServiceStatus");
+                    console.log("showStatus");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar o serviço");
                     return
                 }
-                $("#saldoDaConta").html("O saldo do Contrato é: ETH " + resultado / 1000000000000000000);
+                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado / 1000000000000000000);
+            })
+        }
+
+        function showContract() {
+            event.preventDefault();
+            $("#resultadoPesquisa").html("");
+            contract.showContract(frmPesquisa.serviceId.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("showContract");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                    frmPesquisa.serviceId.value = "";
+                    return
+                }
+                $("#showContract").html("contractHash: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
             })
         }
 
