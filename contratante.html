@@ -25,7 +25,7 @@
         }
 
         .bg-1 {
-            background-color: #004297;
+            background-color: #009744;
             /* Blue */
             color: #ffffff;
         }
@@ -63,6 +63,16 @@
             letter-spacing: 5px;
         }
 
+        .navbar2 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
         .jumbotron {
             background-color: #009744;
             color: #fff;
@@ -98,15 +108,25 @@
             </div>
         </div>
     </nav>
-    <!-- Profile -->
-    <div class="jumbotron text-center bg-1">
-        <img src="img_avatar2.png" alt="Avatar" width="120" height="120">
-        <h1>Contratante</h1>
-        <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
-        <br>
-    </div>
+        <!-- MENU CONTRATANTE -->
+        <nav class="navbar2 navbar-default bg-1">
+                <div class="container">
+                    <div class="navbar-header">
+                            <div class="media">
+                                    <div class="media-left">
+                                        <img src="img_avatar2.png" class="media-object" style="width:45px">
+                                    </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Contratante</h4> 
+                                    <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </nav>
+
     <!-- Div Busca -->
-    <div class="container text-center bg-3">
+    <div class="container-fluid text-center bg-3">
         <div class="row">
             <div>
                 <form action="#" method="get" name="formPesquisa" id="formPesquisa">
@@ -249,7 +269,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="Sign()" class="btn btn-primary">Assinar</button>
+                    <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
@@ -273,8 +293,8 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado[1] + "<br>Valor do Serviço: ETH " + resultado[2] / 1000000000000000000 + "<br>Data do Pagamento: " + resultado[3] + "<br>Já foi pago? " + resultado[4] + "<br>Foi Cancelado? : " + resultado[5]);
-                valueToPay = (resultado[2] * 1);
+                $("#resultadoPesquisa1").html("Prestador do serviço: " + resultado[0] + "<br>Contratante do Serviço: " + resultado[1] + "<br>Valor do Serviço: ETH " + resultado[2] / 1000000000000000000 + "<br>Data do Pagamento: " + resultado[3]);
+                valueToPay = (resultado[1] * 1);
             })
         }
 
@@ -289,7 +309,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado[1] + "<br>Entregue: " + resultado[2] + "<br>Disputa: " + resultado[3] + "<br>Arbitragem: " + resultado[4] + "<br>Encerrado: " + resultado[5]);
+                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado[1] + "<br>Entregue: " + resultado[2] + "<br>Disputa: " + resultado[3] + "<br>Arbitragem: " + resultado[4] + "<br>Contrato finalizado: " + resultado[5]);
             })
         }
 
@@ -304,6 +324,21 @@
                     return
                 }
                 waitForTxToBeMined(resultado, "#statusPagamento");
+            })
+        }
+
+        function showContract() {
+            event.preventDefault();
+            $("#resultadoPesquisa").html("");
+            contract.showContract(frmPesquisa.serviceId.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("showContract");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                    frmPesquisa.serviceId.value = "";
+                    return
+                }
+                $("#showContract").html("contractHash: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
             })
         }
 

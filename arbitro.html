@@ -25,7 +25,7 @@
         }
 
         .bg-1 {
-            background-color: #004297;
+            background-color: #970000;
             /* Blue */
             color: #ffffff;
         }
@@ -63,6 +63,16 @@
             letter-spacing: 5px;
         }
 
+        .navbar2 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
         .jumbotron {
             background-color: #970000;
             color: #fff;
@@ -71,7 +81,7 @@
         }
 
         .navbar-nav li a:hover {
-            color: #004297 !important;
+            color: #970000 !important;
         }
     </style>
     <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
@@ -98,19 +108,29 @@
             </div>
         </div>
     </nav>
-    <!-- Profile -->
-    <div class="jumbotron text-center bg-1">
-        <img src="img_avatar5.png" alt="Avatar" width="120" height="120">
-        <h1>Árbitro</h1>
-        <h5>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</h5>
-        <br>
-    </div>
+        <!-- MENU CONTRATANTE -->
+        <nav class="navbar2 navbar-default bg-1">
+                <div class="container">
+                    <div class="navbar-header">
+                            <div class="media">
+                                    <div class="media-left">
+                                        <img src="img_avatar5.png" class="media-object" style="width:45px">
+                                    </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Árbitro</h4> 
+                                    <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </nav>
     <!-- Div Busca -->
     <div class="container text-center bg-3">
         <div class="row">
             <div>
                 <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                     <div class="input">
+                        <br>
                         <h3>Encontre uma DISPUTA
                             <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
                                 placeholder="ID da Disputa" required="">

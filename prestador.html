@@ -296,8 +296,7 @@
                 <br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Verificar Assinatura</button>
-                    <button type="button" onclick="Sign()" class="btn btn-success">Assinar</button>
+                    <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
@@ -322,7 +321,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa1").html("Contratante do serviço: " + resultado[0] + "<br>Data do Vencimento: " + resultado[1] + "<br>Valor do Serviço: ETH " + resultado[2] / 1000000000000000000 + "<br>Data do Pagamento: " + resultado[3] + "<br>Já foi pago? " + resultado[4] + "<br>Foi Cancelado? : " + resultado[5]);
+                $("#resultadoPesquisa1").html("Prestador do serviço: " + resultado[0] + "<br>Contratante do Serviço: " + resultado[1] + "<br>Valor do Serviço: ETH " + resultado[2] / 1000000000000000000 + "<br>Data do Pagamento: " + resultado[3]);
                 valueToPay = (resultado[1] * 1);
             })
         }
@@ -338,7 +337,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado[1] + "<br>Entregue: " + resultado[2] + "<br>Disputa: " + resultado[3] + "<br>Arbitragem: " + resultado[4] + "<br>Encerrado: " + resultado[5]);
+                $("#resultadoPesquisa2").html("Pago: " + resultado[0] + "<br>Cancelado: " + resultado[1] + "<br>Entregue: " + resultado[2] + "<br>Disputa: " + resultado[3] + "<br>Arbitragem: " + resultado[4] + "<br>Contrato finalizado: " + resultado[5]);
             })
         }
 
@@ -352,7 +351,7 @@
                     alert("Houve um erro ao pesquisar o serviço");
                     return
                 }
-                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado / 1000000000000000000);
+                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado [0] / 1000000000000000000 + "<br>Valor total das vendas: ETH" + resultado [1] / 1000000000000000000 + "<br>Número de vendas: " + resultado [2] + "<br>Número de serviços exitosos: " + resultado [3] + "<br>Número de serviços perdidos:" + resultado [4]);
             })
         }
 
