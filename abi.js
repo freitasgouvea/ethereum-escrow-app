@@ -18,6 +18,46 @@ const contractABI = [
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_contractor",
+				"type": "address"
+			},
+			{
+				"name": "_contractHash",
+				"type": "address"
+			},
+			{
+				"name": "_billValue",
+				"type": "uint256"
+			}
+		],
+		"name": "registrerService",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "serviceId",
+				"type": "uint256"
+			},
+			{
+				"name": "_contractHash",
+				"type": "address"
+			}
+		],
+		"name": "signContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "serviceId",
 				"type": "uint256"
 			}
@@ -29,25 +69,46 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "_contractor",
-				"type": "address"
-			},
-			{
-				"name": "_dueDate",
-				"type": "uint256"
-			},
-			{
-				"name": "_billValue",
+				"name": "serviceId",
 				"type": "uint256"
 			}
 		],
-		"name": "registrerService",
-		"outputs": [],
+		"name": "showContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -67,8 +128,24 @@ const contractABI = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "showBalance",
+		"name": "showStatus",
 		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
 			{
 				"name": "",
 				"type": "uint256"
@@ -189,7 +266,7 @@ const contractABI = [
 			},
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "address"
 			},
 			{
 				"name": "",
@@ -198,14 +275,6 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "bool"
-			},
-			{
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -246,6 +315,10 @@ const contractABI = [
 			},
 			{
 				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
 				"type": "uint256"
 			},
 			{
@@ -279,9 +352,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0x66e4cE4df46A500fDEC5587CF79925d644bFf137"; 
+    contractAddress = "0xcb47d9c60bfca92bf02d22f8e5d3437b3d6f38d1"; 
 } else {
-    contractAddress = "0x66e4cE4df46A500fDEC5587CF79925d644bFf137"; 
+    contractAddress = "0xcb47d9c60bfca92bf02d22f8e5d3437b3d6f38d1"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
