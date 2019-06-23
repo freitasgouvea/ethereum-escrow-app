@@ -108,33 +108,31 @@
             </div>
         </div>
     </nav>
-        <!-- MENU ARBITRO -->
-        <nav class="navbar2 navbar-default bg-1">
-                <div class="container">
-                    <div class="navbar-header">
-                            <div class="media">
-                                    <div class="media-left">
-                                        <img src="img_avatar5.png" class="media-object" style="width:45px">
-                                    </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Árbitro</h4> 
-                                    <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
-                                </div>
-                            </div>
+    <!-- MENU ARBITRO -->
+    <nav class="navbar2 navbar-default bg-1">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="img_avatar5.png" class="media-object" style="width:45px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Árbitro</h4>
+                        <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </div>
+    </nav>
     <!-- Div Busca -->
     <div class="container-fluid text-center bg-3">
         <div class="row">
             <div>
                 <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                     <div class="input">
-
-                            <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
-                                placeholder="ID da Disputa" required="">
-                            <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
-
+                        <input type="number" name="disputeId" id="disputeId" class="form-id bg-3" size="20"
+                            placeholder="ID da Disputa" required="">
+                        <button type="button" onclick="showDispute()" class="btn btn-primary">Buscar</button>
                     </div>
                 </form>
             </div>
@@ -149,8 +147,8 @@
                         class="btn btn-secondary">Contrato</button>
                     <button type="button" data-toggle="modal" data-target="#modalEventos"
                         class="btn btn-secondary">Eventos</button>
-                    </h3>
-                    <br>
+                </h3>
+                <br>
                 <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
                 <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
                 <br>
@@ -226,7 +224,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Registrar Evento</button>
                 </div>
             </div>
         </div>
@@ -243,13 +240,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4><strong>Contrato para prestação de serviços de freelancers </strong></h4>
-                    <p id="p1">p1. Este contrato vai ser realizado entre (nome), (estado civil), (profissão), portador
-                        da
-                        cédula de identidade R.G. nº ______, residente no ____________ e que a partir de agora será
-                        denominado como contratado e entre (nome), (estado civil), (profissão), portador da cédula de
-                        identidade R.G. nº ______ e residente no ____________, estando este último a atuar como
-                        representante da empresa ________ e que a partir de agora será denominado como contratante.</p>
+                    <p id="p1">p1. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
                     <p id="p2">p2. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
@@ -262,9 +255,10 @@
                     <p id="p5">p5. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p id="local">São Paulo, 27 de junho de 2019.</p>
                     <br>
-                    <p><div id="showContract"></div></p>
+                    <p>
+                        <div id="showContract"></div>
+                    </p>
                     <br>
                 </div>
                 <div class="modal-footer">
@@ -280,6 +274,7 @@
     <script>
 
         var frmPesquisa = document.formPesquisa;
+        var serviceIdToShow = 0;
 
         function showDispute() {
             event.preventDefault();
@@ -293,6 +288,22 @@
                     return
                 }
                 $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3] + "<br>Houve julgamento? : " + resultado[4] + "<br>Resultado da disputa : " + resultado[5]);
+                serviceIdToShow = resultado[0];
+            })
+        }
+
+        function showContract() {
+            event.preventDefault();
+            $("#resultadoPesquisa").html("");
+            contract.showContract(serviceIdToShow.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("showContract");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                    frmPesquisa.serviceId.value = "";
+                    return
+                }
+                $("#showContract").html("contractHash: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
             })
         }
 
