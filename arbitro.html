@@ -285,8 +285,7 @@
                 if (erro) {
                     console.log("showDispute");
                     console.error(erro);
-                    alert("Houve um erro ao pesquisar a fatura");
-                    frmPesquisa.disputeId.value = "";
+                    alert("Houve um erro ao pesquisar a disputa");
                     return
                 }
                 $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3] + "<br>Houve julgamento? : " + resultado[4] + "<br>Resultado da disputa : " + resultado[5]);
@@ -301,7 +300,7 @@
                 if (erro) {
                     console.log("showContract");
                     console.error(erro);
-                    alert("Houve um erro ao pesquisar o serviço");
+                    alert("Houve um erro ao pesquisar as assinaturas");
                     frmPesquisa.serviceId.value = "";
                     return
                 }
