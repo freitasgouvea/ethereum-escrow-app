@@ -181,7 +181,7 @@
                     <form action="#" method="get" name="formRegistro" id="formRegistro">
                         <div class="input">
                             <label for="contractorId">Informe o endereço do contratante: </label>
-                            <input type="number" name="contractorId" id="contractorId" class="form-id bg-3" size="32"
+                            <input type="string" name="contractorId" id="contractorId" class="form-id bg-3" size="32"
                                 placeholder="ID do Contratante" required="">
                         </div>
                         <div class="input">
@@ -191,7 +191,7 @@
                         </div>
                         <div class="input">
                             <label for="contractHash">Informe o hash (SH1) do contrato: </label>
-                            <input type="number" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
+                            <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
                                 placeholder="Hash (SH1)" required="">
                         </div>
                         <div>
@@ -306,13 +306,14 @@
                     <p id="p5">p5. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <br>
+                    <p>
+                        <div id="showContract"></div>
+                    </p>
+                    <br>
                 </div>
-                <p>
-                    <div id="showContract"></div>
-                </p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
