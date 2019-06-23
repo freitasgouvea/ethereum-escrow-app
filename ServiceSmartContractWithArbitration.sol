@@ -16,7 +16,7 @@ contract ServiceSmartContractWithArbitration {
     struct service {
         address payable provider;
         address payable contractor;
-        bytes32 contractHash;
+        address contractHash;
         bool providerSign;
         uint256 providerSignDate;
         bool contractorSign;
@@ -49,15 +49,16 @@ contract ServiceSmartContractWithArbitration {
         arbitrator = _arbitratorWallet;
     }
     
-    function registrerService (address payable _contractor, bytes32 _contractHash, uint256 _billValue) public {
+    function registrerService (address payable _contractor, address _contractHash, uint256 _billValue) public {
         require (msg.sender == provider);
         listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, 0, false, false, false, false, false, false));
     }
     
-    function signContract(uint serviceId) public {
-            require (msg.sender == listOfSells[serviceId].contractor);
-            listOfSells[serviceId].contractorSign = true;
-            listOfSells[serviceId].contractorSignDate = now;
+    function signContract (uint serviceId, address _contractHash) public {
+        require (msg.sender == listOfSells[serviceId].contractor);
+        require (_contractHash == listOfSells[serviceId].contractHash);
+        listOfSells[serviceId].contractorSign = true;
+        listOfSells[serviceId].contractorSignDate = now;
     }
     
     function payService (uint256 serviceId) public payable {
@@ -131,7 +132,7 @@ contract ServiceSmartContractWithArbitration {
         return (listOfSells[serviceId].servicePayed, listOfSells[serviceId].serviceCanceled, listOfSells[serviceId].serviceDelivered, listOfSells[serviceId].serviceDisputed, listOfSells[serviceId].serviceArbitraded, listOfSells[serviceId].serviceConcluded);
     }
     
-    function showContract (uint256 serviceId) public view returns (bytes32, address payable, bool, uint256, address payable, bool, uint256) {
+    function showContract (uint256 serviceId) public view returns (address, address payable, bool, uint256, address payable, bool, uint256) {
         return (listOfSells[serviceId].contractHash, listOfSells[serviceId].provider, listOfSells[serviceId].providerSign, listOfSells[serviceId].providerSignDate, listOfSells[serviceId].contractor, listOfSells[serviceId].contractorSign, listOfSells[serviceId].contractorSignDate); 
     }
     
