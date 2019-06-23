@@ -49,8 +49,8 @@
         }
 
         .container-fluid {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
 
         .navbar {
@@ -126,42 +126,43 @@
             </nav>
 
     <!-- Div Busca -->
-    <div class="container bg-3">
+    <div class="container-fluid text-center bg-3">
         <div class="row">
             <div>
                 <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                     <div class="input">
-                        <h3>Encontre o seu SERVIÇO
-                            <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
-                                placeholder="ID do Serviço" required="">
-                            <button type="button" onclick="showBill(); showServiceStatus()"
-                                class="btn btn-primary">Buscar</button>
-                        </h3>
+                        <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
+                            placeholder="ID do Serviço" required="">
+                        <button type="button" onclick="showBill(); showServiceStatus()"
+                            class="btn btn-primary">Buscar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- Divs Infos -->
-    <!-- Divs Infos -->
-    <div class="container-fluid text-center bg-3">
+    <div class="container bg-3">
         <div class="row">
             <div>
-                <h3>Detalhes do Serviço</h3>
+                <h3>Detalhes do Serviço
+                    <button type="button" onclick="showContract()" data-toggle="modal" data-target="#modalContratos"
+                        class="btn btn-secondary">Contrato</button>
+                    <button type="button" data-toggle="modal" data-target="#modalEventos"
+                        class="btn btn-secondary">Eventos</button>
+                    </h3>
+                    <br>
                 <div id="resultadoPesquisa1"></div>
                 <div id="resultadoPesquisa2"></div>
                 <br>
                 <button type="button" onclick="payService()" class="btn btn-warning">Pagar Serviço</button>
-                <button type="button" data-toggle="modal" data-target="#modalContratos"
-                    class="btn btn-primary">Contrato</button>
-                <button type="button" data-toggle="modal" data-target="#modalEventos"
-                    class="btn btn-primary">Eventos</button>
+                <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button>
                 <button type="button" onclick="acceptService()" class="btn btn-success">Aceitar Serviço</button>
-                <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button> <br>
+                <br>
                 <br>
                 <div id="statusPagamento"></div>
                 <div id="statusAceitacao"></div>
                 <div id="statusRejeicao"></div>
+                <br>
             </div>
         </div>
     </div>
@@ -266,10 +267,12 @@
                         facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
                     </p>
                     <p id="local">São Paulo, 27 de junho de 2019.</p>
+                    <br>
+                    <p><div id="showContract"></div></p>
+                    <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
