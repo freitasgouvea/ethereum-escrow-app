@@ -49,8 +49,8 @@
         }
 
         .container-fluid {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
 
         .navbar {
@@ -90,24 +90,24 @@
 <body>
     <!-- MENU -->
     <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
-                        <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
-                        <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
-                    </ul>
-                </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
             </div>
-        </nav>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-- MENU PRESTADOR -->
     <nav class="navbar2 navbar-default bg-1">
         <div class="container">
@@ -125,38 +125,41 @@
         </div>
     </nav>
     <!-- Div Busca -->
-    <div class="container bg-3">
+    <div class="container-fluid text-center bg-3">
         <div class="row">
             <div>
                 <form action="#" method="get" name="formPesquisa" id="formPesquisa">
                     <div class="input">
-                        <h3>Encontre um SERVIÇO
-                            <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
-                                placeholder="ID do Serviço" required="">
-                            <button type="button" onclick="showBill(); showServiceStatus()"
-                                class="btn btn-primary">Buscar</button>
-                            <button type="button" data-toggle="modal" data-target="#modalNovo"
-                                class="btn btn-primary">Novo Serviço</button>
-                        </h3>
+
+                        <input type="number" name="serviceId" id="serviceId" class="form-id bg-3" size="20"
+                            placeholder="ID do Serviço" required="">
+                        <button type="button" onclick="showBill(); showServiceStatus()"
+                            class="btn btn-primary">Buscar</button>
+                        <button type="button" data-toggle="modal" data-target="#modalNovo" class="btn btn-primary">Novo
+                            Serviço</button>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- Divs Infos -->
-    <div class="container-fluid text-center bg-3">
+    <div class="container bg-3">
         <div class="row">
             <div>
-                <h3>Detalhes do Serviço</h3>
+                <h3>Detalhes do Serviço
+                    <button type="button" onclick="showContract()" data-toggle="modal" data-target="#modalContratos"
+                        class="btn btn-secondary">Contrato</button>
+                    <button type="button" data-toggle="modal" data-target="#modalEventos"
+                        class="btn btn-secondary">Eventos</button>
+                </h3>
+                <br>
                 <div id="resultadoPesquisa1"></div>
                 <div id="resultadoPesquisa2"></div>
                 <br>
-                <button type="button" onclick="showContract()" data-toggle="modal" data-target="#modalContratos"
-                    class="btn btn-primary">Contrato</button>
-                <button type="button" data-toggle="modal" data-target="#modalEventos"
-                    class="btn btn-primary">Eventos</button>
                 <button type="button" onclick="deliveryAService()" class="btn btn-success">Entregar Serviço</button>
                 <button type="button" onclick="cancelService()" class="btn btn-danger">Cancelar Serviço</button>
+                <br>
                 <br>
                 <div id="statusCancelamento"></div>
                 <div id="statusEntrega"></div>
@@ -351,7 +354,7 @@
                     alert("Houve um erro ao pesquisar o serviço");
                     return
                 }
-                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado [0] / 1000000000000000000 + "<br>Valor total das vendas: ETH" + resultado [1] / 1000000000000000000 + "<br>Número de vendas: " + resultado [2] + "<br>Número de serviços exitosos: " + resultado [3] + "<br>Número de serviços perdidos:" + resultado [4]);
+                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado[0] / 1000000000000000000 + "<br>Valor total das vendas: ETH" + resultado[1] / 1000000000000000000 + "<br>Número de vendas: " + resultado[2] + "<br>Número de serviços exitosos: " + resultado[3] + "<br>Número de serviços perdidos:" + resultado[4]);
             })
         }
 
