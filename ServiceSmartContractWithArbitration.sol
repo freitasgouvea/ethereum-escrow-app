@@ -107,6 +107,7 @@ contract ServiceSmartContractWithArbitration {
         listOfDisputes[disputeId].contractor.transfer(listOfDisputes[disputeId].valueOfADispute);
         listOfSells[listOfDisputes[disputeId].serviceId].dateOfTerm = now;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
+        listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
         listOfDisputes[disputeId].disputeProcessed = true;
         listOfDisputes[disputeId].resultOfDispute = true;
         balance -= listOfDisputes[disputeId].valueOfADispute;
@@ -115,11 +116,12 @@ contract ServiceSmartContractWithArbitration {
     
     function disputeToProvider(uint256 disputeId) public payable {
         require (msg.sender == arbitrator);
+        provider.transfer(listOfDisputes[disputeId].valueOfADispute);
         listOfSells[listOfDisputes[disputeId].serviceId].dateOfTerm = now;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
+        listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
         listOfDisputes[disputeId].disputeProcessed = true;
         listOfDisputes[disputeId].resultOfDispute = false;
-        provider.transfer(listOfDisputes[disputeId].valueOfADispute);
         balance -= listOfDisputes[disputeId].valueOfADispute;
         numberOfDeliveries ++;
     }
