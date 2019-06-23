@@ -178,19 +178,37 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formRegistro"></form>
-                </div>
-                <div>
-                    <form id="escolhaDoContrato"></form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="registrerService()" class="btn btn-primary">Regsitrar</button>
+                    <form action="#" method="get" name="formRegistro" id="formRegistro">
+                        <div class="input">
+                            <label for="contractorId">Informe o endereço do contratante: </label>
+                            <input type="number" name="contractorId" id="contractorId" class="form-id bg-3" size="32"
+                                placeholder="ID do Contratante" required="">
+                        </div>
+                        <div class="input">
+                            <label for="contractorId">Informe o valor do serviço: ETH </label>
+                            <input type="number" name="contractorId" id="contractorId" class="form-id bg-3" size="20"
+                                placeholder="Valor em ETH" required="">
+                        </div>
+                        <div class="input">
+                            <label for="contractHash">Informe o hash (SH1) do contrato: </label>
+                            <input type="number" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
+                                placeholder="Hash (SH1)" required="">
+                        </div>
+                        <div>
+                            <button type="button" onclick="registrerService()"
+                                class="btn btn-success">Regsitrar</button>
+                        </div>
+                    </form>
+                    <br>
+                    <div id="statusRegistro"></div>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Modals Detalhes -->
     <div id="modalEventos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalEventosTitle"
         aria-hidden="true">
@@ -273,13 +291,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4><strong>Contrato para prestação de serviços de freelancers </strong></h4>
-                    <p id="p1">p1. Este contrato vai ser realizado entre (nome), (estado civil), (profissão), portador
-                        da
-                        cédula de identidade R.G. nº ______, residente no ____________ e que a partir de agora será
-                        denominado como contratado e entre (nome), (estado civil), (profissão), portador da cédula de
-                        identidade R.G. nº ______ e residente no ____________, estando este último a atuar como
-                        representante da empresa ________ e que a partir de agora será denominado como contratante.</p>
+                    <p id="p1">p1. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
                     <p id="p2">p2. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
@@ -292,11 +306,10 @@
                     <p id="p5">p5. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p id="local">São Paulo, 27 de junho de 2019.</p>
                 </div>
-                <br>
-                <p><div id="showContract"></div></p>
-                <br>
+                <p>
+                    <div id="showContract"></div>
+                </p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
@@ -370,6 +383,22 @@
                     return
                 }
                 $("#showContract").html("contractHash: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
+            })
+        }
+
+        var frmRegistro = document.formRegistro;
+
+        function registrerService() {
+            event.preventDefault();
+            $("#statusRegistro").html("&nbsp;");
+            contract.registrerService(frmRegistro.contractorId.value, frmRegistro.contractHash.value, frmRegistro.billValue.value * 1000000000000000000, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+                if (erro) {
+                    console.log("registrerService");
+                    console.error(erro);
+                    alert("Houve um erro ao registrar este serviço");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusRegistro");
             })
         }
 
