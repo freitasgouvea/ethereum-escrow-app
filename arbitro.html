@@ -288,7 +288,7 @@
                     alert("Houve um erro ao pesquisar a disputa");
                     return
                 }
-                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3] + "<br>Houve julgamento? : " + resultado[4] + "<br>Resultado da disputa : " + resultado[5]);
+                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3]/ 1000000000000000000 + "<br>Decisão proferida: " + resultado[4] + "<br>Resultado da disputa: " + resultado[5]);
                 serviceIdToShow = resultado[0];
             })
         }
