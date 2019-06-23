@@ -149,7 +149,7 @@
                         class="btn btn-secondary">Eventos</button>
                 </h3>
                 <br>
-                <div id="resultadoPesquisa"></div>
+                <div id="showDispute"></div>
                 <br>
                 <button type="button" onclick="disputeToContractor()" class="btn btn-success">Aceitar Disputa</button>
                 <button type="button" onclick="disputeToProvider()" class="btn btn-danger">Rejeitar Disputa</button>
@@ -280,7 +280,7 @@
 
         function showDispute() {
             event.preventDefault();
-            $("#resultadoPesquisa").html("");
+            $("#showDispute").html("");
             contract.showDispute(frmPesquisa.disputeId.value, function (erro, resultado) {
                 if (erro) {
                     console.log("showDispute");
@@ -288,7 +288,7 @@
                     alert("Houve um erro ao pesquisar a disputa");
                     return
                 }
-                $("#resultadoPesquisa").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3]/ 1000000000000000000 + "<br>Decisão proferida: " + resultado[4] + "<br>Resultado da disputa: " + resultado[5]);
+                $("#showDispute").html("ServiceId: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Contratante: " + resultado[2] + "<br>Valor da disputa: ETH " + resultado[3]/ 1000000000000000000 + "<br>Decisão proferida: " + resultado[4] + "<br>Resultado da disputa: " + resultado[5]);
                 serviceIdToShow = resultado[0];
             })
         }
@@ -301,7 +301,6 @@
                     console.log("showContract");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar as assinaturas");
-                    frmPesquisa.serviceId.value = "";
                     return
                 }
                 $("#showContract").html("contractHash: " + resultado[0] + "<br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
