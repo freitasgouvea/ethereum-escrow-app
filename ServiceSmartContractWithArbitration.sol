@@ -7,7 +7,7 @@ contract ServiceSmartContractWithArbitration {
     uint256 totalOfSells;
     uint256 numberOfSells;
     uint256 numberOfDeliveries;
-    uint256 numberOfRejections;
+    uint256 numberOfFails;
     uint256 valueToTransfer;
 
     service [] listOfSells;
@@ -26,6 +26,7 @@ contract ServiceSmartContractWithArbitration {
         uint256 dateOfDelivery;
         uint256 dateOfTerm;
         bool servicePayed;
+        bool contractSigned;
         bool serviceCanceled;
         bool serviceDelivered;
         bool serviceDisputed;
@@ -51,7 +52,7 @@ contract ServiceSmartContractWithArbitration {
     
     function registrerService (address payable _contractor, address _contractHash, uint256 _billValue) public {
         require (msg.sender == provider);
-        listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, 0, false, false, false, false, false, false));
+        listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, 0, false, false, false, false, false, false, false));
     }
     
     function signContract (uint serviceId, address _contractHash) public {
@@ -76,7 +77,7 @@ contract ServiceSmartContractWithArbitration {
         listOfSells[serviceId].serviceCanceled = true;
         listOfSells[serviceId].contractor.transfer(listOfSells[serviceId].billValue);
         balance -= listOfSells[serviceId].billValue;
-        numberOfRejections ++;
+        numberOfFails ++;
     }
     
     function deliveryAService(uint256 serviceId) public {
@@ -111,7 +112,7 @@ contract ServiceSmartContractWithArbitration {
         listOfDisputes[disputeId].disputeProcessed = true;
         listOfDisputes[disputeId].resultOfDispute = true;
         balance -= listOfDisputes[disputeId].valueOfADispute;
-        numberOfRejections ++;
+        numberOfFails ++;
     }
     
     function disputeToProvider(uint256 disputeId) public payable {
@@ -126,12 +127,12 @@ contract ServiceSmartContractWithArbitration {
         numberOfDeliveries ++;
     }
     
-    function showBill(uint256 serviceId) public view returns (address payable, address payable, uint256, uint256) {
-        return (listOfSells[serviceId].provider, listOfSells[serviceId].contractor, listOfSells[serviceId].billValue, listOfSells[serviceId].dateOfPayment);
+    function showBill(uint256 serviceId) public view returns (address payable, address payable, uint256, uint256, bool) {
+        return (listOfSells[serviceId].provider, listOfSells[serviceId].contractor, listOfSells[serviceId].billValue, listOfSells[serviceId].dateOfPayment, listOfSells[serviceId].servicePayed);
     }
     
     function showServiceStatus(uint256 serviceId) public view returns (bool, bool, bool, bool, bool,bool) {
-        return (listOfSells[serviceId].servicePayed, listOfSells[serviceId].serviceCanceled, listOfSells[serviceId].serviceDelivered, listOfSells[serviceId].serviceDisputed, listOfSells[serviceId].serviceArbitraded, listOfSells[serviceId].serviceConcluded);
+        return (listOfSells[serviceId].contractSigned, listOfSells[serviceId].serviceCanceled, listOfSells[serviceId].serviceDelivered, listOfSells[serviceId].serviceDisputed, listOfSells[serviceId].serviceArbitraded, listOfSells[serviceId].serviceConcluded);
     }
     
     function showContract (uint256 serviceId) public view returns (address, address payable, bool, uint256, address payable, bool, uint256) {
@@ -143,7 +144,7 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function showStatus() public view returns (uint256, uint256, uint256, uint256, uint256) {
-        return (balance, totalOfSells, numberOfSells, numberOfDeliveries, numberOfRejections);
+        return (balance, totalOfSells, numberOfSells, numberOfDeliveries, numberOfFails);
     }
     
     function drawSells(uint256 _value) public payable {
