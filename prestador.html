@@ -114,10 +114,10 @@
             <div class="navbar-header">
                 <div class="media">
                     <div class="media-left">
-                        <img src="img_avatar3.png" class="media-object" style="width:45px">
+                        <img src="avatarP.jpg" class="media-object" style="width:70px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Prestador</h4>
+                        <h1 class="media-heading">Prestador</h1>
                         <small><i>ID : 0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9</i>
                     </div>
                 </div>
@@ -192,16 +192,18 @@
                         </div>
                         <div class="form-group">
                             <label for="comment">Cláusulas Contratuais:</label>
-                            <textarea class="form-control" rows="10" id="clausulas"></textarea>
-                          </div>
+                            <button type="button" onclick="sha1($str)" class="btn btn-secondary">Gerar Hash</button>
+                            <textarea type="string" class="form-control" rows="10" id="clausulas"></textarea>
+                            <?php $str = clausulas; echo sha1($str);?>
+                        </div>
                         <div class="input">
                             <label for="contractHash">Informe o hash (SH1) do contrato: </label>
                             <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
                                 placeholder="Hash (SH1)" required="">
                         </div>
                         <div>
-                            <button type="button" onclick="registrerService()"
-                                class="btn btn-success">Assinar e Regsitrar</button>
+                            <button type="button" onclick="registrerService()" class="btn btn-success">Assinar e
+                                Regsitrar</button>
                         </div>
                     </form>
                     <br>
@@ -323,7 +325,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="connectToSmartContract.js"></script>
     <script src="abi.js"></script>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prestador</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font: 20px Montserrat, sans-serif;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .margin {
+            margin-bottom: 45px;
+        }
+
+        .bg-1 {
+            background-color: #004297;
+            /* Blue */
+            color: #ffffff;
+        }
+
+        .bg-2 {
+            background-color: #dddddd;
+            /* Dark Blue */
+            color: #000000;
+        }
+
+        .bg-3 {
+            background-color: #ffffff;
+            /* White */
+            color: #000000;
+        }
+
+        .bg-4 {
+            background-color: #2f2f2f;
+            /* Black Gray */
+            color: #fff;
+        }
+
+        .bg-5 {
+            background-color: #474e5d;
+            /* Dark Blue */
+            color: #ffffff;
+        }
+
+        .container-fluid {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .navbar {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+
+        .navbar2 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .jumbotron {
+            background-color: #fff;
+            color: #2f2f2f;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .navbar-nav li a:hover {
+            color: #004297 !important;
+        }
+
+        .carousel-inner img {
+            -webkit-filter: grayscale(90%);
+            filter: grayscale(90%);
+            /* make all photos black and white */
+            width: 100%;
+            height: 600px;
+            background-size: 100% 100%;
+            /* Set width to 100% */
+            margin: auto;
+        }
+
+        .carousel-caption {
+            color: #fff !important;
+            background: #000000;
+        }
+
+        .background-container {
+            -webkit-filter: grayscale(90%);
+            filter: grayscale(90%);
+            background-image: url("capaAgreez.jpg");
+            width: 100%;
+            height: 600px;
+            background-size: 100% 100%;
+            margin: auto;
+        }
+    </style>
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+
+<body>
+    <!-- MENU -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://freitasgouvea.github.io/asc/index.html">AgreeZ</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://freitasgouvea.github.io/asc/contratante.html">Contratante</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/prestador.html">Prestador</a></li>
+                    <li><a href="https://freitasgouvea.github.io/asc/arbitro.html">Arbitro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="capaContratante.jpg" alt="New York">
+                <div class="carousel-caption center">
+                    <h1>"Como confiar que o serviço vai ser entregue conforme o combinado?</h1>
+                    <h3>Cintia, quer contratar um freelancer.</h3>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="capaPrestador.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                    <h1>"Como garantir que irei receber pelo meu serviço?</h1>
+                    <h3>Mickey, quer oferecer seus serviços.</h3>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="capaArbitro.jpg" alt="Los Angeles">
+                <div class="carousel-caption">
+                    <h1>"Sou especialista neste serviço, posso ajudar vocês!"</h1>
+                    <h3>Marcela, quer arbitrar disputas online.</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Próxima</span>
+        </a>
+    </div>
+    <div id="services" class="container-fluid text-center bg-3">
+        <h1>SMART CONTRACTS ARBITRÁVEIS</h1>
+        <h3>Escrow Account + Mecanismo de Reslução de Disputa</h3>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-link logo-small"></span>
+                <h4>REGISTRAR CONTRATOS</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-ok-circle logo-small"></span>
+                <h4>ASSINAR CONTRATOS</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-zoom-in logo-big"></span>
+                <h4>ACOMPANHAR OS EVENTOS</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+        </div>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-bitcoin logo-small"></span>
+                <h4>FAZER E RECEBER PAGAMENTOS</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-lock logo-small"></span>
+                <h4>GARANTIR O CUMRPRIMENTO CONTRATUAL</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-heart logo-small"></span>
+                <h4>CONSTRUIR A SUA REPUTACAO ONLINE</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div id="services" class="container-fluid text-center bg-2">
+        <h1>EM CASO DE DISPUTA</h1>
+        <h3>Arbitragem Online</h3>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-plus logo-small"></span>
+                <h4>CRIAR UMA DISPUTA</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-random logo-small"></span>
+                <h4>RESOLVER UMA DISPUTA</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-ok logo-small"></span>
+                <h4>EXECUTAR A DECISÃO</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="container-fluid bg-5 text-center" >
+        <h1 class="margin">FAÇA UM TESTE</h1>
+        <a href="https://freitasgouvea.github.io/asc/prestador.html" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-search"></span> Testar
+        </a>
+    </div>
+
+
+</body>
+
+<footer class="container-fluid bg-4 text-center">
+    <p>Pagina de Flavio de Freitas Gouvea Neto</p>
+    <p><a href="https://www.freitasgouvea.com">www.freitasgouvea.com</a></p>
+</footer>
+
+</html>
