@@ -61,6 +61,7 @@ contract ServiceSmartContractWithArbitration {
         require (_contractHash == listOfSells[serviceId].contractHash);
         listOfSells[serviceId].contractorSign = true;
         listOfSells[serviceId].contractorSignDate = now;
+        listOfSells[serviceId].contractSigned = true;
     }
     
     function payService (uint256 serviceId) public payable {
@@ -142,7 +143,7 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function showStatus() public view returns (uint256, uint256, uint256) {
-        return ( numberOfSells, numberOfDeliveries, numberOfFails);
+        return (numberOfSells, numberOfDeliveries, numberOfFails);
     }
     
     function showBalance() public view returns (uint256) {
