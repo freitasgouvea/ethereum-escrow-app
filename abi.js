@@ -69,6 +69,20 @@ const contractABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "cashOutContract",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -128,16 +142,31 @@ const contractABI = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "showStatus",
+		"name": "showBalance",
 		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "depositInContract",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "showStatus",
+		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
@@ -275,24 +304,14 @@ const contractABI = [
 			{
 				"name": "",
 				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "drawSells",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -352,9 +371,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0xcb47d9c60bfca92bf02d22f8e5d3437b3d6f38d1"; 
+    contractAddress = "0xffb8c05d9f3085c0974406c724c907ba80e3e8f0"; 
 } else {
-    contractAddress = "0xcb47d9c60bfca92bf02d22f8e5d3437b3d6f38d1"; 
+    contractAddress = "0xffb8c05d9f3085c0974406c724c907ba80e3e8f0"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
