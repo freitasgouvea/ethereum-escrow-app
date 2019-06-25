@@ -4,7 +4,6 @@ contract ServiceSmartContractWithArbitration {
     address payable provider;
     address payable arbitrator;
     uint256 balance;
-    uint256 totalOfSells;
     uint256 numberOfSells;
     uint256 numberOfDeliveries;
     uint256 numberOfFails;
@@ -23,8 +22,10 @@ contract ServiceSmartContractWithArbitration {
         uint256 contractorSignDate;
         uint256 billValue;
         uint256 dateOfPayment;
+        //uint256 dateOfCancel
         uint256 dateOfDelivery;
-        uint256 dateOfTerm;
+        //uint256 dateOfTerm;
+        //uint256 dateOfDispute;
         bool servicePayed;
         bool contractSigned;
         bool serviceCanceled;
@@ -52,7 +53,7 @@ contract ServiceSmartContractWithArbitration {
     
     function registrerService (address payable _contractor, address _contractHash, uint256 _billValue) public {
         require (msg.sender == provider);
-        listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, 0, false, false, false, false, false, false, false));
+        listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, false, false, false, false, false, false, false));
     }
     
     function signContract (uint serviceId, address _contractHash) public {
@@ -74,8 +75,8 @@ contract ServiceSmartContractWithArbitration {
     
     function cancelService (uint256 serviceId) public payable {
         require (msg.sender == provider);
-        listOfSells[serviceId].serviceCanceled = true;
         listOfSells[serviceId].contractor.transfer(listOfSells[serviceId].billValue);
+        listOfSells[serviceId].serviceCanceled = true;
         balance -= listOfSells[serviceId].billValue;
         numberOfFails ++;
     }
@@ -91,7 +92,6 @@ contract ServiceSmartContractWithArbitration {
         require (msg.sender == listOfSells[serviceId].contractor);
         provider.transfer(listOfSells[serviceId].billValue);
         listOfSells[serviceId].serviceConcluded = true;
-        listOfSells[serviceId].dateOfTerm = now;
         balance -= listOfSells[serviceId].billValue;
         numberOfDeliveries ++;
     }
@@ -106,7 +106,6 @@ contract ServiceSmartContractWithArbitration {
     function disputeToContractor(uint256 disputeId) public payable {
         require (msg.sender == arbitrator);
         listOfDisputes[disputeId].contractor.transfer(listOfDisputes[disputeId].valueOfADispute);
-        listOfSells[listOfDisputes[disputeId].serviceId].dateOfTerm = now;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
         listOfDisputes[disputeId].disputeProcessed = true;
@@ -118,7 +117,6 @@ contract ServiceSmartContractWithArbitration {
     function disputeToProvider(uint256 disputeId) public payable {
         require (msg.sender == arbitrator);
         provider.transfer(listOfDisputes[disputeId].valueOfADispute);
-        listOfSells[listOfDisputes[disputeId].serviceId].dateOfTerm = now;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
         listOfDisputes[disputeId].disputeProcessed = true;
@@ -143,11 +141,19 @@ contract ServiceSmartContractWithArbitration {
         return (listOfDisputes[disputeId].serviceId, listOfDisputes[disputeId].provider, listOfDisputes[disputeId].contractor, listOfDisputes[disputeId].valueOfADispute, listOfDisputes[disputeId].disputeProcessed, listOfDisputes[disputeId].resultOfDispute);
     }
     
-    function showStatus() public view returns (uint256, uint256, uint256, uint256, uint256) {
-        return (balance, totalOfSells, numberOfSells, numberOfDeliveries, numberOfFails);
+    function showStatus() public view returns (uint256, uint256, uint256) {
+        return ( numberOfSells, numberOfDeliveries, numberOfFails);
     }
     
-    function drawSells(uint256 _value) public payable {
+    function showBalance() public view returns (uint256) {
+        return (balance);
+    }
+    
+    function depositInContract() public payable {
+        balance += msg.value;
+    }
+    
+    function cashOutContract(uint256 _value) public payable {
         require (msg.sender == provider);
         valueToTransfer = _value;
         provider.transfer(valueToTransfer);
