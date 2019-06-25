@@ -140,20 +140,6 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "showBalance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [],
 		"name": "depositInContract",
@@ -167,6 +153,10 @@ const contractABI = [
 		"inputs": [],
 		"name": "showStatus",
 		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
 			{
 				"name": "",
 				"type": "uint256"
@@ -371,9 +361,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0xffb8c05d9f3085c0974406c724c907ba80e3e8f0"; 
+    contractAddress = "0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9"; 
 } else {
-    contractAddress = "0xffb8c05d9f3085c0974406c724c907ba80e3e8f0"; 
+    contractAddress = "0x443cFD0807a3aeCc11Ea2A2310ABEb9040B740f9"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
