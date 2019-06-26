@@ -186,9 +186,9 @@
                                 placeholder="ID do Contratante" required="">
                         </div>
                         <div class="input">
-                            <label for="contractorId">Informe o valor do serviço: ETH </label>
+                            <label for="contractorId">Informe o valor do serviço: WEI </label>
                             <input type="number" name="contractorId" id="contractorId" class="form-id bg-3" size="20"
-                                placeholder="Valor em ETH" required="">
+                                placeholder="Valor em WEI" required="">
                         </div>
                         <div class="form-group">
                             <label for="comment">Cláusulas Contratuais:</label>
@@ -418,7 +418,7 @@
         function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
-            contract.registrerService(frmRegistro.contractorId.string, (frmRegistro.billValue.value * 1000000000000000000), frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+            contract.registrerService(frmRegistro.contractorId.string, frmRegistro.billValue.value, frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
