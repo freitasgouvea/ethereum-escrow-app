@@ -265,13 +265,13 @@
                         <div id="showContract"></div>
                     </p>
                     <br>
-                    <form>
+                    <form action="#" method="get" name="formContrato" id="formContrato">
                         <div class="input">
                             <label for="contractHash">Informe o hash (SHA1) do contrato: </label>
                             <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="50"
                                 placeholder="Hash (SH1)" required="">
+                            <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                         </div>
-                        <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -348,10 +348,12 @@
             })
         }
 
+        var frmContrato = document.frmContrato;
+
         function signContract() {
             event.preventDefault();
             $("#statusSign").html("&nbsp;");
-            contract.signContract(frmPesquisa.serviceId.value, frmPesquisa.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+            contract.signContract(frmPesquisa.serviceId.value, frmContrato.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
                 if (erro) {
                     console.log("signContract");
                     console.error(erro);
