@@ -1,4 +1,3 @@
-/* This is for example purposes */
 const contractABI = [
 	{
 		"constant": false,
@@ -18,33 +17,11 @@ const contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_contractor",
-				"type": "address"
-			},
-			{
-				"name": "_contractHash",
-				"type": "address"
-			},
-			{
-				"name": "_billValue",
-				"type": "uint256"
-			}
-		],
-		"name": "registrerService",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
 				"name": "serviceId",
 				"type": "uint256"
 			},
 			{
-				"name": "_contractHash",
+				"name": "contractHash",
 				"type": "address"
 			}
 		],
@@ -305,6 +282,28 @@ const contractABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "contractor",
+				"type": "address"
+			},
+			{
+				"name": "billValue",
+				"type": "uint256"
+			},
+			{
+				"name": "contractHash",
+				"type": "address"
+			}
+		],
+		"name": "registrerService",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -361,9 +360,9 @@ const contractABI = [
 ]
 
 if (network === "4") {
-    contractAddress = "0xc87d78ba961d7a4ac077147f05b5afadd0394dc2"; 
+    contractAddress = "0x071eb4d4dcd3c298b3400a8bb478187d79bd139e"; 
 } else {
-    contractAddress = "0xc87d78ba961d7a4ac077147f05b5afadd0394dc2"; 
+    contractAddress = "0x071eb4d4dcd3c298b3400a8bb478187d79bd139e"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
