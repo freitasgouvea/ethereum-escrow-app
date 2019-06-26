@@ -190,6 +190,11 @@
                             <input type="number" name="billValue" id="billValue" class="form-id bg-3" size="30"
                                 placeholder="Valor em WEI" required="">
                         </div>
+                        <div class="form-group">
+                            <label for="comment">Cláusulas Contratuais:</label>
+                            <button type="button" onclick="" class="btn btn-secondary">Gerar Hash</button>
+                            <textarea type="string" class="form-control" rows="10" id="clausulas"></textarea>
+                        </div>
                         <div class="input">
                             <label for="contractHash">Informe o hash (SHA1) do contrato: </label>
                             <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="50"
@@ -200,12 +205,6 @@
                                 Regsitrar</button>
                         </div>
                     </form>
-                    <div class="form-group">
-                        <label for="comment">Cláusulas Contratuais:</label>
-                        <button type="button" onclick="sha1($str)" class="btn btn-secondary">Gerar Hash</button>
-                        <textarea type="string" class="form-control" rows="10" id="clausulas"></textarea>
-                        <?php $str = clausulas; echo sha1($str);?>
-                    </div>
                     <br>
                     <div id="statusRegistro"></div>
                     <br>
