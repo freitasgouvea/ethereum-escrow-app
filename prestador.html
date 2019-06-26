@@ -417,7 +417,7 @@
         function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
-            contract.registrerService(frmRegistro.contractorId.value, frmRegistro.billValue.value, frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+            contract.registrerService(frmRegistro.contractorId.value, frmRegistro.billValue.value * 1000000000000000000, frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
