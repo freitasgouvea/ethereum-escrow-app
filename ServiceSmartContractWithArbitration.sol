@@ -51,14 +51,15 @@ contract ServiceSmartContractWithArbitration {
         arbitrator = _arbitratorWallet;
     }
     
-    function registrerService (address payable _contractor, address _contractHash, uint256 _billValue) public {
-        require (msg.sender == provider);
-        listOfSells.push(service(provider, _contractor, _contractHash, true, now, false, 0, _billValue, 0, 0, false, false, false, false, false, false, false));
+    function registrerService (address payable contractor, uint256 billValue, address contractHash) public {
+        //require (msg.sender == provider);
+        listOfSells.push(service(provider, contractor, contractHash, true, now, false, 0, billValue, 0, 0, false, false, false, false, false, false, false));
     }
     
-    function signContract (uint serviceId, address _contractHash) public {
-        require (msg.sender == listOfSells[serviceId].contractor);
-        require (_contractHash == listOfSells[serviceId].contractHash);
+    function signContract (uint serviceId, address contractHash) public {
+        //require (msg.sender == listOfSells[serviceId].contractor);
+        require (contractHash == listOfSells[serviceId].contractHash);
+        require (listOfSells[serviceId].contractSigned == false);
         listOfSells[serviceId].contractorSign = true;
         listOfSells[serviceId].contractorSignDate = now;
         listOfSells[serviceId].contractSigned = true;
@@ -76,6 +77,7 @@ contract ServiceSmartContractWithArbitration {
     
     function cancelService (uint256 serviceId) public payable {
         require (msg.sender == provider);
+        require (true == listOfSells[serviceId].servicePayed);
         listOfSells[serviceId].contractor.transfer(listOfSells[serviceId].billValue);
         listOfSells[serviceId].serviceCanceled = true;
         balance -= listOfSells[serviceId].billValue;
@@ -83,14 +85,15 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function deliveryAService(uint256 serviceId) public {
-        require (msg.sender == provider);
+        //require (msg.sender == provider);
         require (true == listOfSells[serviceId].servicePayed);
         listOfSells[serviceId].serviceDelivered = true;
         listOfSells[serviceId].dateOfDelivery = now;
     }
     
     function acceptService(uint256 serviceId) public payable {
-        require (msg.sender == listOfSells[serviceId].contractor);
+        //require (msg.sender == listOfSells[serviceId].contractor);
+        require (true == listOfSells[serviceId].serviceDelivered);
         provider.transfer(listOfSells[serviceId].billValue);
         listOfSells[serviceId].serviceConcluded = true;
         balance -= listOfSells[serviceId].billValue;
@@ -98,14 +101,14 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function rejectService(uint256 serviceId) public {
-        require (msg.sender == listOfSells[serviceId].contractor);
+        //require (msg.sender == listOfSells[serviceId].contractor);
         require (true == listOfSells[serviceId].serviceDelivered);
         listOfDisputes.push(dispute(serviceId, arbitrator, provider, listOfSells[serviceId].contractor,listOfSells[serviceId].billValue, false, false, 0));
         listOfSells[serviceId].serviceDisputed = true;
     }
     
     function disputeToContractor(uint256 disputeId) public payable {
-        require (msg.sender == arbitrator);
+        //require (msg.sender == arbitrator);
         listOfDisputes[disputeId].contractor.transfer(listOfDisputes[disputeId].valueOfADispute);
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
@@ -116,7 +119,7 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function disputeToProvider(uint256 disputeId) public payable {
-        require (msg.sender == arbitrator);
+        //require (msg.sender == arbitrator);
         provider.transfer(listOfDisputes[disputeId].valueOfADispute);
         listOfSells[listOfDisputes[disputeId].serviceId].serviceArbitraded = true;
         listOfSells[listOfDisputes[disputeId].serviceId].serviceConcluded = true;
@@ -142,12 +145,8 @@ contract ServiceSmartContractWithArbitration {
         return (listOfDisputes[disputeId].serviceId, listOfDisputes[disputeId].provider, listOfDisputes[disputeId].contractor, listOfDisputes[disputeId].valueOfADispute, listOfDisputes[disputeId].disputeProcessed, listOfDisputes[disputeId].resultOfDispute);
     }
     
-    function showStatus() public view returns (uint256, uint256, uint256) {
-        return (numberOfSells, numberOfDeliveries, numberOfFails);
-    }
-    
-    function showBalance() public view returns (uint256) {
-        return (balance);
+    function showStatus() public view returns (uint256, uint256, uint256, uint256) {
+        return (balance, numberOfSells, numberOfDeliveries, numberOfFails);
     }
     
     function depositInContract() public payable {
@@ -155,7 +154,7 @@ contract ServiceSmartContractWithArbitration {
     }
     
     function cashOutContract(uint256 _value) public payable {
-        require (msg.sender == provider);
+        //require (msg.sender == provider);
         valueToTransfer = _value;
         provider.transfer(valueToTransfer);
         balance -= _value;
