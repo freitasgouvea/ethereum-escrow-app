@@ -155,7 +155,7 @@
                 <div id="resultadoPesquisa2"></div>
                 <br>
                 <button type="button" onclick="showContract()" data-toggle="modal" data-target="#modalContratos"
-                class="btn btn-warning">Assinar Contrato</button>
+                    class="btn btn-warning">Assinar Contrato</button>
                 <button type="button" onclick="payService()" class="btn btn-warning">Pagar Serviço</button>
                 <button type="button" onclick="rejectService()" class="btn btn-danger">Rejeitar Serviço</button>
                 <button type="button" onclick="acceptService()" class="btn btn-success">Aceitar Serviço</button>
@@ -259,21 +259,23 @@
                     <p id="p3">p3. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
                         facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p id="p4">p4. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-                        facilisis
-                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p id="p5">p5. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-                        facilisis
-                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <button type="button" onclick="" class="btn btn-secondary">Gerar Hash</button>
                     <br>
                     <p>
                         <div id="showContract"></div>
                     </p>
                     <br>
+                    <form>
+                        <div class="input">
+                            <label for="contractHash">Informe o hash (SHA1) do contrato: </label>
+                            <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="50"
+                                placeholder="Hash (SH1)" required="">
+                        </div>
+                        <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                 </div>
             </div>
         </div>
@@ -343,6 +345,20 @@
                     return
                 }
                 $("#showContract").html("contractHash: " + resultado[0] + "<br><br>Prestador: " + resultado[1] + "<br>Assinatura do prestador: " + resultado[2] + "<br>Data da assinatura do prestador: " + resultado[3] + "<br><br>Contratante: " + resultado[4] + "<br>Assinatura do contratante: " + resultado[5] + "<br>Data da assinatura do contrantante: " + resultado[6]);
+            })
+        }
+
+        function signContract() {
+            event.preventDefault();
+            $("#statusSign").html("&nbsp;");
+            contract.signContract(frmPesquisa.serviceId.value, frmPesquisa.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+                if (erro) {
+                    console.log("signContract");
+                    console.error(erro);
+                    alert("Houve um erro ao assinar o contrato");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusSign");
             })
         }
 
