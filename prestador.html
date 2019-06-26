@@ -394,7 +394,7 @@
                     alert("Houve um erro ao pesquisar o serviço");
                     return
                 }
-                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado[0] / 1000000000000000000 + "<br>Número de vendas: " + resultado[1] + "<br>Número de serviços exitosos: " + resultado[2] + "<br>Número de serviços perdidos:" + resultado[3]);
+                $("#showStatus").html("O saldo do Contrato é: ETH " + resultado[0] / 1000000000000000000 + "<br>Número de serviços: " + resultado[1] + "<br>Número de serviços exitosos: " + resultado[2] + "<br>Número de serviços perdidos: " + resultado[3]);
             })
         }
 
@@ -418,7 +418,7 @@
         function registrerService() {
             event.preventDefault();
             $("#statusRegistro").html("&nbsp;");
-            contract.registrerService(frmRegistro.contractorId.string, frmRegistro.billValue.value * 1000000000000000000, frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
+            contract.registrerService(frmRegistro.contractorId.string, (frmRegistro.billValue.value * 1000000000000000000), frmRegistro.contractHash.value, { from: web3.eth.accounts[0], gas: 3000000, value: 0 }, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
