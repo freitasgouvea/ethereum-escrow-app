@@ -269,7 +269,7 @@
                         <div class="input">
                             <label for="contractHash">Informe o hash (SHA1) do contrato: </label>
                             <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="50"
-                                placeholder="Hash (SH1)" required="">
+                                placeholder="Hash (SHA1)" required="">
                             <button type="button" onclick="signContract()" class="btn btn-success">Assinar</button>
                         </div>
                     </form>
@@ -348,7 +348,7 @@
             })
         }
 
-        var frmContrato = document.frmContrato;
+        var frmContrato = document.formContrato;
 
         function signContract() {
             event.preventDefault();
