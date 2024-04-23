@@ -359,10 +359,4 @@ const contractABI = [
 	}
 ]
 
-if (network === "4") {
-    contractAddress = "0xb94e787d7cf2da42548b63a9320085fd2c5fa435"; 
-} else {
-    contractAddress = "0xb94e787d7cf2da42548b63a9320085fd2c5fa435"; 
-}
-
-contract = web3.eth.contract(contractABI).at(contractAddress);
+contract = web3.eth.contract(contractABI).at("0xb94e787d7cf2da42548b63a9320085fd2c5fa435");
