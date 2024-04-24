@@ -359,4 +359,4 @@ const contractABI = [
 	}
 ]
 
-contract = web3.eth.contract(contractABI).at("0xb94e787d7cf2da42548b63a9320085fd2c5fa435");
+const contract = web3.eth.contract(contractABI).at("0xb94e787d7cf2da42548b63a9320085fd2c5fa435");
