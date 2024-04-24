@@ -1,8 +1,5 @@
-
-var web3;
-var contract;
-var network;
-var contractAddress;
+let web3;
+let network;
 
 if (window.ethereum) {
     web3 = new Web3(ethereum);
